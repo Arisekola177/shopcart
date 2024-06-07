@@ -7,12 +7,20 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      screens: {
+        xs: "240px",
+        sm: "320px",
+        sml: "480px",
+        md: "667px",
+        mdl: "768px",
+        lg: "960px",
+        lgl: "1024px",
+        xl: "1280px",
+      },
+      boxShadow: {
+        testShadow: "0px 0px 54px -13px rgba(0,0,0,0.7)",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };

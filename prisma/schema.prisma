@@ -1,0 +1,93 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+ 
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+model User {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?         @unique
+  emailVerified DateTime?
+  image         String?
+  hassPassword  String?  
+  role Role @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  accounts      Account[]
+   orders       Order[]
+}
+ 
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@unique([provider, providerAccountId])
+}
+
+model Product{
+   id            String  @id @default(auto()) @map("_id") @db.ObjectId
+   name  String
+   description String
+   price Float
+   brand String
+   category String
+   inStock Boolean
+   images String
+   
+}
+
+
+
+model Order{
+     id            String  @id @default(auto()) @map("_id") @db.ObjectId
+     userId        String  @db.ObjectId
+     currency      String
+     sessionId     String
+     status        String
+     deliveredStatus  String
+     createdAt    DateTime @default(now())
+     products     CartProduct[]
+     address      String
+     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+}
+
+type CartProduct {
+  id  String
+  name String 
+  description String
+  category String
+  brand String
+  quantity Int
+  price Float
+  inStock Boolean
+  images  String 
+  
+}
+
+
+
+ enum Role{
+   USER
+   ADMIN
+ }
+
