@@ -38,7 +38,7 @@ const Footer = () => {
              <Link href='/'>
              <h1 className="font-bold text-xl tracking-wide text-blue-600 cursor-pointer">SHOP<span className="text-yellow-400">CART</span></h1>
              </Link>
-             <p className='text-white text-xs xs:mx-auto md:mx-0 w-[80%]'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in</p>
+             <p className='text-white text-xs xs:mx-auto md:mx-0 leading-6 w-[80%]'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in</p>
              <div className='flex items-center gap-2'>
                <FaGithub className='text-gray-400 text-xl' />
                <FaTwitter className='text-gray-400 text-xl' />
@@ -47,7 +47,7 @@ const Footer = () => {
          </div>
          <div className='col-span-2 text-white xs:mx-auto md:mx-0 xs:py-4 md:py-0 grid grid-cols-2 xs:gap-10 md:gap-6'>
          <div className=''>
-            <h2 className='md:text-lg xs:text-sm mb-4'>Shop</h2>
+            <h2 className='lg:text-lg xs:text-sm mb-4'>Shop</h2>
           <ul className="flex flex-col gap-2">
             <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Accesories
@@ -67,7 +67,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className=''>
-          <h2 className='md:text-lg xs:text-sm mb-4'>Your Account</h2>
+          <h2 className='lg:text-lg xs:text-sm mb-4'>Your Account</h2>
           <ul className="flex flex-col gap-2">
             <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Profile
@@ -88,7 +88,7 @@ const Footer = () => {
         </div>
         </div>
         <div className="col-span-2 flex flex-col px-4 xs:items-center md:items-start">
-        <h2 className='text-white mb-4 xs:text-lg md:text-xl'>Subscribe to our Newsletter</h2>
+        <h2 className='text-white mb-4 xs:text-sm lg:text-xl line-clamp-1'>Subscribe to our Newsletter</h2>
           <div className="w-full">
             {subscription ? (
               <motion.p
@@ -117,7 +117,7 @@ const Footer = () => {
                 </div>
                 <button
                   onClick={handleSubscription}
-                  className="bg-white xs:w-full md:w-[30%] h-10 rounded-lg shadow-lg hover:bg-black hover:text-white duration-300 xs:text-xs md:text-sm tracking-wide"
+                  className="bg-white xs:w-full lg:w-[30%] h-10 rounded-lg shadow-lg hover:bg-black hover:text-white duration-300 xs:text-xs md:text-sm tracking-wide"
                 >
                   Subscribe
                 </button>

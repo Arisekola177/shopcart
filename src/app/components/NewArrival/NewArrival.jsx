@@ -2,7 +2,7 @@
 
 'use client'
 import Slider from "react-slick";
-import { newarrival } from "@/app/constants/data";
+import {newarrival} from '../../constants/data'
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
@@ -10,14 +10,16 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import toast, { Toaster } from "react-hot-toast";
-import { addToCart, addToWish } from "@/app/redux/shopSlice";
+import { addToCart, addToWish } from "../../redux/shopSlice";
 import FormattedPrice from "../FormattedPrice";
 import SampleNextArrow from "../SampleNextArrow";
 import SamplePrevArrow from "../SamplePrevArrow";
+import { useState } from "react";
 
 const NewArrival = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
 
   const settings = {
     infinite: true,
@@ -69,7 +71,7 @@ const NewArrival = () => {
                 className="w-full h-24 md:w-36 md:h-36 relative overflow-hidden"
               >
                 <Image
-                  src={product.image}
+                  src={product.images[0].image}
                   alt={product.title}
                   width={200}
                   height={200}
@@ -80,33 +82,8 @@ const NewArrival = () => {
                     New Arrival
                   </span>
                 )}
-                <div className="w-2/3 mx-auto h-28 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+                <div className="w-full h-28 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
                   <ul className="w-full h-full flex flex-col items-center justify-center gap-2 px-2 border-l border-r">
-                   
-                    <li
-                      onClick={() =>
-                        dispatch(
-                          addToCart({
-                            id: product.id,
-                            brand: product.brand,
-                            category: product.category,
-                            description: product.description,
-                            image: product.image,
-                            isNew: product.isNew,
-                            oldPrice: product.oldPrice,
-                            price: product.price,
-                            title: product.title,
-                            quantity: 1,
-                          })
-                        ) && toast.success(`${product.title.substring(0, 15)} added successfully!`)
-                      }
-                      className="text-[#767676] text-xs border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 pt-1 duration-300 w-full"
-                    >
-                      Add to Cart
-                      <span>
-                        <FaShoppingCart />
-                      </span>
-                    </li>
                     <li
                       onClick={() => router.push(`/product/${product.id}`)}
                       className="text-[#767676] text-xs  border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
@@ -131,7 +108,7 @@ const NewArrival = () => {
                             title: product.title,
                             quantity: 1,
                           })
-                        ) && toast.success(`${product.title.substring(0, 15)} added successfully!`)
+                        ) && toast.success(`${product.name} added successfully!`)
                       }
                       className="text-[#767676] text-xs border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
                     >

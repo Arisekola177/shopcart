@@ -2,7 +2,7 @@
 
 'use client'
 import Slider from "react-slick";
-import { newarrival } from "@/app/constants/data";
+import { newarrival } from "../../constants/data";
 import Image from "next/image";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
@@ -10,7 +10,7 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import toast, { Toaster } from "react-hot-toast";
-import { addToCart, addToWish } from "@/app/redux/shopSlice";
+import { addToCart, addToWish } from "../../redux/shopSlice";
 import FormattedPrice from "../FormattedPrice";
 import SampleNextArrow from "../SampleNextArrow";
 import SamplePrevArrow from "../SamplePrevArrow";
@@ -55,7 +55,7 @@ const NewArrival = () => {
   };
 
   return (
-    <div className="md:w-10/12 w-full mx-auto rounded-lg shadow-xl bg-white py-6">
+    <div className="md:w-10/12 w-full mx-auto my-10 rounded-lg shadow-xl bg-white">
       <div className="p-6 sm:text-center md:text-start">
         <h2 className="font-semibold xs:text-xl md:text-xl">Special Offer</h2>
       </div>
@@ -69,7 +69,7 @@ const NewArrival = () => {
                 className="w-full h-24 md:w-36 md:h-36 relative overflow-hidden"
               >
                 <Image
-                  src={product.image}
+                  src={product.images[0].image}
                   alt={product.title}
                   width={200}
                   height={200}
@@ -82,31 +82,6 @@ const NewArrival = () => {
                 )}
                 <div className="w-full h-28 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
                   <ul className="w-full h-full flex flex-col items-center justify-center gap-2 px-2 border-l border-r">
-                   
-                    <li
-                      onClick={() =>
-                        dispatch(
-                          addToCart({
-                            id: product.id,
-                            brand: product.brand,
-                            category: product.category,
-                            description: product.description,
-                            image: product.image,
-                            isNew: product.isNew,
-                            oldPrice: product.oldPrice,
-                            price: product.price,
-                            title: product.title,
-                            quantity: 1,
-                          })
-                        ) && toast.success(`${product.title.substring(0, 15)} added successfully!`)
-                      }
-                      className="text-[#767676] text-xs border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 pt-1 duration-300 w-full"
-                    >
-                      Add to Cart
-                      <span>
-                        <FaShoppingCart />
-                      </span>
-                    </li>
                     <li
                       onClick={() => router.push(`/product/${product.id}`)}
                       className="text-[#767676] text-xs  border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
@@ -124,7 +99,7 @@ const NewArrival = () => {
                             brand: product.brand,
                             category: product.category,
                             description: product.description,
-                            image: product.image,
+                            image: product.images,
                             isNew: product.isNew,
                             oldPrice: product.oldPrice,
                             price: product.price,

@@ -1,13 +1,15 @@
-import Products from "../components/Products"
-import { productData } from "../constants/data"
 
 
-const page = () => {
+
+export default async function Product() {
+  
+
+ 
+
   return (
     <div>
-      <Products productData={productData} />
+  
     </div>
-  )
+  );
 }
 
-export default page

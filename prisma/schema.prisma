@@ -9,7 +9,8 @@ generator client {
  
 model User {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  name          String?
+  firstName     String
+  lastName      String
   email         String?         @unique
   emailVerified DateTime?
   image         String?
@@ -19,6 +20,7 @@ model User {
   updatedAt DateTime @updatedAt
   accounts      Account[]
    orders       Order[]
+   reviews      Review[]
 }
  
 model Account {
@@ -51,11 +53,20 @@ model Product{
    brand String
    category String
    inStock Boolean
-   images String
-   
+   images Image[]
+   review Review[]
 }
 
-
+model Review{
+   id            String  @id @default(auto()) @map("_id") @db.ObjectId
+   userId        String  @db.ObjectId
+   productId      String  @db.ObjectId
+   rating      Int
+   comment  String
+   createdAt    DateTime @default(now())
+   product Product @relation(fields: [productId], references: [id])
+   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
 model Order{
      id            String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -63,13 +74,15 @@ model Order{
      currency      String
      sessionId     String
      status        String
-     deliveredStatus  String
+     deliveredStatus  String?
      createdAt    DateTime @default(now())
      products     CartProduct[]
-     address      String
+     address       Address?
+     amount       Float
      user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     
 }
+
 
 type CartProduct {
   id  String
@@ -78,12 +91,25 @@ type CartProduct {
   category String
   brand String
   quantity Int
-  price Float
+  amount Float
   inStock Boolean
-  images  String 
-  
+  selectedImage  Image ? 
+  reviews   Json
 }
 
+type Image{
+  color   String
+  colorCode String
+  image String
+}
+
+
+type Address{
+  city String
+  country String
+  phone String
+  state String
+}
 
 
  enum Role{

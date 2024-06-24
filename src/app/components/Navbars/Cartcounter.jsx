@@ -8,7 +8,7 @@ const Cartcounter = () => {
     <div>
         <div className='relative'>
             <div>
-            <FaShoppingBag className="md:text-3xl sml:text-2xl text-yellow-400" />
+            <FaShoppingBag className="text-3xl text-yellow-400" />
             </div>
              <span className='absolute top-[-10px] bg-slate-700 sml:text-xs md:text-sm right-[-10px] h-6 w-6 flex items-center justify-center rounded-full text-white'>
             {productData.length}

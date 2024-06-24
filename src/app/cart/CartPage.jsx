@@ -9,26 +9,16 @@ import { FaShoppingBasket, FaArrowAltCircleLeft } from "react-icons/fa";
 
 const CartPage = ({currentUser}) => {
   const productData = useSelector((state) => state.shop.productData);
-  const dispatch = useDispatch()
-  const handleReset = () => {
-     const confirmReset = window.confirm  ('Are you sure you want to reset your cart?');
-     if(confirmReset){
-       dispatch(resetCart())
-     }
-  }
+
+
   return (
-    <div className="w-11/12 mx-auto px-6 py-4">
-    
-    
-       {
+    <div className="w-10/12 mx-auto py-10">
+     {
         productData.length > 0 ?
          ( 
            <>
                <CartItems productData={productData} currentUser={currentUser} />
-               <button onClick={handleReset} className="text-white bg-red-500 rounded-md py-2 px-3 hover:bg-red-900 duration-300">Reset cart</button>
-
-         </>
-        
+           </>
          )  
          :
          (<div className=" min-h-[70vh] text-gray-800 flex flex-col items-center justify-center">

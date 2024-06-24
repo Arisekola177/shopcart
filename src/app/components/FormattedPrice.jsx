@@ -9,3 +9,7 @@ const FormattedPrice = ({ amount }) => {
 };
 
 export default FormattedPrice;
+
+
+
+

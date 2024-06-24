@@ -17,10 +17,10 @@ const Banner2 = () => {
         </div>
        
         <div className="col-span-1 text-center xs:py-5 md:py-0">
-          <h1 className="md:text-3xl xs:text-xl font-semibold mb-4  ">
+          <h1 className="lg:text-3xl md:text-sm xs:text-xl font-semibold mb-4  ">
             Product of The year
           </h1>
-          <p className="md:text-base xs:text-xs xs:w-full font-normal md:max-w-[600px] mr-4">
+          <p className="lg:text-base xs:text-xs xs:w-full font-normal lg:max-w-[600px] mr-4">
           Bundle includes Marvel’s Spider-Man 2 full game digital voucher
 Includes DualSense Wireless Controller, 1TB SSD, 2 Horizontal Stand Feet, HDMI Cable, AC power cord, USB cable, printed materials, ASTRO’s PLAYROOM (Pre-installed game)
           </p>

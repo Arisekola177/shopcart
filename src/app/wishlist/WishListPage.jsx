@@ -17,14 +17,14 @@ const WishListPage = () => {
      }
   }
   return (
-    <div className="w-10/12 mx-auto px-6 py-4">
+    <div className="w-10/12 mx-auto py-10">
    
        {
         wishList.length > 0 ?
          ( 
            <>
             <div className="bg-white rounded-lg">
-               <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1 font-montserrat">
+               <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1">
                <p className="text-xl font-semibold text-blue-800">
                 WishList
               </p>

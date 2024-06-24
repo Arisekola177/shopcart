@@ -8,8 +8,8 @@ import { SessionProvider } from "next-auth/react";
 const Layout = ({children, session}) => {
   return (
     <SessionProvider session={session}>
-   <Provider store={store}>
-     <PersistGate persistor={persistor}>
+    <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
       {children}
      </PersistGate>
    </Provider>

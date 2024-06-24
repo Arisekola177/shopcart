@@ -1,27 +1,38 @@
 
-
+import lap from '../Images/lap1.jpg';
+import wireless from '../Images/wireless-01.png'
 import Banner from "./Banner";
+import Image from 'next/image';
 
 const Homebanner = () => {
   return (
-    <div className="w-full h-4/6 ">
-        <div className="md:w-10/12 mx-auto grid xs:grid-cols-1 md:gap-4 xs:gap-2  md:grid-cols-3 xs:py-0 md:py-10 ">
-        <div className="col-span-2 h-full">
+    <div className="w-full ">
+        <div className="md:w-10/12 mx-auto grid xs:grid-cols-1 xl:gap-4 xs:gap-2 xl:grid-cols-3 xs:py-0 md:py-5 xl:py-10 ">
+        <div className="col-span-2 w-full h-full">
          <Banner />
       </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2 xs:px-2 md:px-0">
+      <div className="col-span-1 grid grid-cols-2 gap-2 xs:px-2 xl:px-0">
 
-      <div className=" bg-yellow-600 text-white text-center text-xs p-4 flex flex-col gap-4 rounded-lg">
-       <p>All</p>
-       <p>Phones</p>
-       <p>Laptops</p>
-       <p>Monitor</p>
-       <p>Watches</p>
-       <p>Headphones</p>
-       <p>Playstation</p>
-       <p>Mouse</p>
-       <p>Keyboard</p>
-       <p>Chair</p>
+      <div className="grid grid-rows-2 gap-4 ">
+         <div className=' bg-yellow-400 flex items-center justify-center relative rounded-lg'>
+          <Image 
+          src={lap}
+          alt='laptop'
+          width={100}
+          height={100}
+         
+          />
+             <p className='absolute top-4 font-semibold text-white'>Laptops</p>
+         </div>
+         <div className='bg-red-400   flex items-center justify-center rounded-lg relative'>
+         <Image 
+          src={wireless}
+          alt='watch'
+          width={100}
+          height={100}
+          />
+          <p className='absolute top-4 font-semibold text-white'>HeadPhones</p>
+         </div>
       </div>
      
       <div className="grid grid-rows-2 gap-4">
@@ -45,4 +56,7 @@ const Homebanner = () => {
 };
 
 export default Homebanner;
+
+
+
 
