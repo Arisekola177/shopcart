@@ -63,13 +63,14 @@ const ManageProductClient = ({ products }) => {
         <ActionBtn Icon={MdCached} onClick={() => {handleToggleStock(params.row.id, params.row.inStock)} } />
         <ActionBtn Icon={MdDelete} onClick={() => {handleDelete(params.row.id, params.row.images)} } />
         <ActionBtn Icon={MdRemoveRedEye} onClick={() => {
-            router.push(`product/${params.row.id}`)
+            router.push(`/product/${params.row.id}`)
         } } />
         </div>,
     },
   ];
 
   const handleToggleStock = useCallback((id, inStock) => {
+    toast("Updating product, please wait ....... ");
     axios.put('/api/product', {
       id,
       inStock: !inStock
@@ -112,7 +113,7 @@ const ManageProductClient = ({ products }) => {
       router.refresh();
     } catch (error) {
       toast.error('Something went wrong');
-      console.log(error);
+      toast.error('Products with reviews can only be deleted from the database');
     }
   }, [router]);
 

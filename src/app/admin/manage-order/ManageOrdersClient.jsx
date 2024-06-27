@@ -1,6 +1,5 @@
 
 
-
 'use client';
 import React, { useCallback } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
@@ -11,11 +10,12 @@ import ActionBtn from '../../components/ActionBtn';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
+import { formatDistanceToNow } from 'date-fns';
 
 const ManageOrdersClient = ({ orders }) => {
   const router = useRouter();
   let rows = [];
+
 
   if (orders) {
     rows = orders.map((order) => ({
@@ -37,19 +37,25 @@ const ManageOrdersClient = ({ orders }) => {
       width: 100,
       renderCell: (params) => <FormattedPrice amount={params.row.amount} />,
     },
+    
     {
       field: 'paymentStatus',
       headerName: 'Payment Status',
       width: 130,
-      renderCell: (params) => (
-        <div className='font-bold flex items-center'>
-          {params.row.paymentStatus === 'pending' ? (
-            <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200' color='text-slate-700' />
-          ) : params.row.paymentStatus === 'completed' ? (
-            <Status text='completed' Icon={MdDone} bg='bg-green-200' color='text-purple-700' />
-          ) : <></>}
-        </div>
-      ),
+      renderCell: (params) => {
+        console.log('Payment Status:', params.row.paymentStatus);
+        return (
+          <div className='font-bold flex items-center'>
+            {params.row.paymentStatus === 'pending' ? (
+              <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200' color='text-slate-700' />
+            ) : params.row.paymentStatus === 'completed' ? (
+              <Status text='completed' Icon={MdDone} bg='bg-green-200' color='text-purple-700' />
+            ) : params.row.paymentStatus === 'success' ? (
+              <Status text='success' Icon={MdDone} bg='bg-green-200' color='text-green-700' />
+            ) : <></>}
+          </div>
+        );
+      },
     },
     {
       field: 'deliveryStatus',
@@ -58,11 +64,11 @@ const ManageOrdersClient = ({ orders }) => {
       renderCell: (params) => (
         <div className='font-bold text-slate-600'>
           {params.row.deliveryStatus === 'pending' ? (
-            <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200'color='text-slate-700' />
+            <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200' color='text-slate-700' />
           ) : params.row.deliveryStatus === 'dispatched' ? (
             <Status text='dispatched' Icon={MdDeliveryDining} bg='bg-green-200' color='text-purple-700' />
           ) : params.row.deliveryStatus === 'delivered' ? (
-            <Status text='delivered' Icon={MdDone} bg='bg-green-200'  color='text-green-700' />
+            <Status text='delivered' Icon={MdDone} bg='bg-green-200' color='text-green-700' />
           ) : null}
         </div>
       ),
@@ -82,9 +88,8 @@ const ManageOrdersClient = ({ orders }) => {
     },
   ];
 
-  
-
   const handleDispatch = useCallback((id) => {
+    toast("Updating product, please wait ....... "); 
     axios.put('/api/order', {
       id,
       deliveryStatus: 'dispatched',
@@ -97,9 +102,10 @@ const ManageOrdersClient = ({ orders }) => {
       toast.error('Something went wrong');
       console.error(error);
     });
-  }, []);
+  }, [router]);
 
   const handleDeliver = useCallback((id) => {
+    toast("Updating product, please wait ....... ");
     axios.put('/api/order', {
       id,
       deliveryStatus: 'delivered',
@@ -112,7 +118,7 @@ const ManageOrdersClient = ({ orders }) => {
       toast.error('Something went wrong');
       console.error(error);
     });
-  }, []);
+  }, [router]);
 
   return (
     <div>
@@ -136,5 +142,4 @@ const ManageOrdersClient = ({ orders }) => {
 };
 
 export default ManageOrdersClient;
-
 

@@ -18,10 +18,9 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="flex flex-col group items-center relative">
+      <div className="flex flex-col xs:p-2 group items-center overflow-hidden relative">
       
-        <div onClick={() => router.push(`/product/${product.id}`)} 
-        className="w-full h-24 md:w-36 md:h-36 relative overflow-hidden">
+        <div onClick={() => router.push(`/product/${product.id}`)}  className="w-20 h-20  md:w-36 md:h-36">
           <Image
            src={product.images[0].image}
             alt={product.title}
@@ -34,11 +33,13 @@ const ProductCard = ({ product }) => {
               New Arrival
             </span>
           )}
-           <div className="w-full h-28 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+       
+        </div>
+        <div className="w-full h-28 absolute bg-white -bottom-[230px] group-hover:bottom-0 duration-700">
           <ul className="w-full h-full flex flex-col items-center justify-center gap-2  px-2 border-l border-r">
             <li
               onClick={() => router.push(`/product/${product.id}`)}
-              className="text-[#767676]  text-xs font-normal border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="text-[#767676] xs:text-[8px] sm:text-[10px] font-normal border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >
               View Details
               <span className="text-xs">
@@ -48,6 +49,7 @@ const ProductCard = ({ product }) => {
             <li
              onClick={() => dispatch(addToWish({
               id: product.id,
+              name:product.name,
               brand: product.brand,
               category: product.category,
               description: product.description,
@@ -60,7 +62,7 @@ const ProductCard = ({ product }) => {
            })) && toast.success(
                `${product.name} added successfully!`
            )}
-              className="text-[#767676] text-xs font-normal border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="text-[#767676] xs:text-[8px] sm:text-[10px] font-normal border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >
               Add to Wish List
               <span>
@@ -69,13 +71,11 @@ const ProductCard = ({ product }) => {
             </li>
           </ul>
         </div>
-        </div>
-
       </div>
        
-      <div className="w-2/3 mx-auto md:w-52 px-2 flex flex-col py-4 gap-3">
+      <div className="w-full mx-auto md:w-52 px-2 flex flex-col md:py-4 py-2 gap-3">
         <p className="text-yellow-400 text-xs ">{product.category}</p>
-        <h2 className=" text-sm font-semibold text-gray-800 truncate">{product.name}</h2>
+        <h2 className="md:text-sm xs:text-xs font-semibold text-gray-800 truncate">{product.name}</h2>
         <div className="flex items-center gap-3">
           <p className="font-bold text-xs ">
             <FormattedPrice amount={product.price} />

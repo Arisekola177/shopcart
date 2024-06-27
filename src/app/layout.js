@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import Layout from "./components/Layout";
 import Navbar from "./components/Navbars/Navbar";
 import Footer from "./components/Footer";
+import BottomNavbar from './components/Navbars/BottomNavbar'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import ProductNav from './components/Navbars/ProductNav'
@@ -22,8 +23,8 @@ export default function RootLayout({ children }) {
          <Layout >
         <div className="flex flex-col min-h-screen">
           <Navbar />
-          {/* <BottomNavbar /> */}
-          <ProductNav />
+          <BottomNavbar />
+          
         <div className="flex-grow">
         {children}
         <ToastContainer />

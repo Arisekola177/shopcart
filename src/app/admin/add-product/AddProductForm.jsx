@@ -17,14 +17,8 @@ import { storage } from '../../utils/firebase.config';
 import axios from 'axios';
 
 const FormSchema = z.object({
-  name: z
-    .string()
-    .min(2, 'Title must be at least 2 characters')
-    .max(45, 'Title must be less than 45 characters'),
-  description: z
-    .string()
-    .min(2, 'Description must be at least 2 characters')
-    .max(200, 'Description must be less than 200 characters'),
+  name: z.string().nonempty('Description is required.'), 
+  description: z.string().nonempty('Description is required.'),
   brand: z.string().nonempty('Brand is required.'),
   price: z.string().nonempty('Price is required.'),
   category: z.string().nonempty('Category is required.'),

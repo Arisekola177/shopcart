@@ -15,9 +15,11 @@ const isMainPage = pathname ==='/';
 
 if(!isMainPage) return null;
   return (
-    <div className="w-full bg-white py-6 transition-colors">
-         <div className="w-10/12 mx-auto ">
-             <div className="pt-4 flex flex-row items-center justify-between overflow-hidden">
+    <div className="w-6/12 mx-auto transition-colors">
+         <div className=" ">
+         <h2 className=" font-semibold text-sm py-3">Product Categories</h2>
+             <div className="flex flex-col gap-3 overflow-hidden">
+          
                  {
                   categories.map((item) => (
                    <Category 

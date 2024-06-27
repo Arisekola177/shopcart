@@ -1,9 +1,10 @@
 'use client'
 import Link from "next/link"
-import { useDispatch } from "react-redux"
 import { FaArrowAltCircleLeft } from "react-icons/fa"
+import { useRouter } from "next/navigation"
 const page = () => {
-  const dispatch = useDispatch()
+  
+  const router = useRouter()
   return (
     <div className="flex flex-col gap-2 items-center justify-center py-20">
       <h1 className="text-2xl font-semibold text-green-500">
@@ -17,8 +18,8 @@ const page = () => {
         href={"/"}>
         <p className="flex items-center gap-2"><span><FaArrowAltCircleLeft /></span>Continue Shopping</p>
       </Link>
-      <div>
-        <button>View orders</button>
+      <div className="mt-5 bg-black text-white rounded-md py-2 px-4">
+        <button onClick={() => router.push('/orders')}>View orders</button>
       </div>
     </div>
   )

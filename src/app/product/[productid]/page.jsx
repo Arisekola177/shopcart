@@ -10,7 +10,7 @@ import { getUser } from "../../../../actions/getUser";
 const Page = async ({ params }) => {
  
   const { productid } = params; 
-  const currentUser = await getUser()
+  const user = await getUser()
   const product = await getProductById(productid); 
 
  
@@ -25,8 +25,8 @@ const Page = async ({ params }) => {
   return (
     <div>
       <ProductDetails product={product} />
-      <div className='flex flex-col mt-20 gap-4 w-10/12 mx-auto'>
-          <Addreviews product={product} currentUser={currentUser} />
+      <div className='flex flex-col mt-20  mb-10 gap-4 w-10/12 mx-auto'>
+          <Addreviews product={product} user={user} />
           <Review product={product} />
       </div>
     </div>

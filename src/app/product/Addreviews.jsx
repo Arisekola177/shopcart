@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
-const Addreviews = ({product, currentUser}) => {
+const Addreviews = ({product, user}) => {
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -36,7 +36,12 @@ const Addreviews = ({product, currentUser}) => {
         setIsLoading(false)
         return toast.error('No rating selecetd');
        } 
-       const ratingData = {... data, currentUser, product}
+       const ratingData = {
+                    rating: data.rating,
+                    productId: product.id,
+                    userId: user.id,
+                    comment: data.Comment,
+                };
        axios.post('/api/rating', ratingData).then(() => {
         toast.success('Rating Submitted')
         router.refresh()
@@ -49,19 +54,16 @@ const Addreviews = ({product, currentUser}) => {
     }
 
 
-    if(!currentUser || !product) return null;
+    if(!user || !product) return null;
 
 
-    // const deliveredOrder = user.order.some(order => order.products.find(item =>item.id === product.id )
-    //  && order.deliveryStatus === 'delivered')
+    const deliveredOrder = user.orders.some(order => order.products.find(item => item.id === product.id) && order.deliveredStatus === 'delivered');
 
+    const userReview = product.review.find(review => review.userId === user.id);
 
-    //  const userReview = product.review.find(((review) => {
-    //     return review.userId === user.id
-    //  }))
-
-
-    //  if(!userReview || !deliveredOrder) return null;
+    if (userReview || !deliveredOrder) {
+        return null;
+    }
 
   return (
     <div className='flex flex-col gap-2 max-w-[500px]'>
@@ -87,3 +89,4 @@ const Addreviews = ({product, currentUser}) => {
 }
 
 export default Addreviews
+

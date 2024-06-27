@@ -14,13 +14,15 @@ export const POST = async (request) => {
 
   try {
     const { items, email,  deliveryInfo } = await request.json();
+
+    console.log(items)
    
     const lineItems = items.map((item) => ({
       price_data: {
         currency: 'usd',
         unit_amount: Math.round(item.price * 100), 
         product_data: {
-          name: item.title,
+          name: item.name,
           description: item.description,
           images: [item.selectedImage.image]
         },
@@ -52,7 +54,7 @@ export const POST = async (request) => {
         amount: totalAmount,
         products: items.map(item => ({
           id: item.id,
-          name: item.title,
+          name: item.name,
           description: item.description,
           category: item.category,
           quantity: item.quantity,
@@ -78,4 +80,6 @@ export const POST = async (request) => {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
+
+
 

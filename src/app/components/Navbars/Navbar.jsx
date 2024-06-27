@@ -28,7 +28,7 @@ const Navbar =  () => {
   return (
     <div className='w-full bg-[#131921] sticky top-0 z-50 backdrop-blur-2xl  transition-colors'>
       <div className='md:w-10/12 xs:w-full mx-auto xs:px-2 md:px-0 py-4 flex justify-between items-center gap-4'>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-1'>
         <div onClick={handleNav} className='block md:hidden'>
           {
             showMenu ? (null) : ( <FaBars className='text-white' />)
@@ -101,15 +101,18 @@ const Navbar =  () => {
          
          </div>
           <Link href='/'>
-            <h1 className="sm:font-bold xs:font-semibold xs:text-xs sm:text-sm md:text-xl md:tracking-wide text-blue-600 cursor-pointer">
+            <h1 className="sm:font-bold xs:font-semibold xs:text-xs sm:text-sm lg:text-xl md:tracking-wide text-blue-600 cursor-pointer">
               SHOP<span className="text-yellow-400">CART</span>
             </h1>
           </Link>
         </div>
-         
-          <SearchInput />
 
-          <div className="flex items-center gap-6  text-white">
+          <div className='hidden md:block flex-grow'>
+          <SearchInput />
+          </div>
+         
+
+          <div className="flex items-center gap-4 md:gap-6 text-white">
           <Link href='/cart' >
           <Cartcounter />
           </Link>
@@ -119,7 +122,7 @@ const Navbar =  () => {
           </div>
       
             <div className=''>
-           <User currentUser={currentUser} />
+             <User currentUser={currentUser} />
              </div>
          
       </div>

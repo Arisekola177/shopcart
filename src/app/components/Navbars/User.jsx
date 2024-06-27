@@ -18,7 +18,7 @@ const User = ({ currentUser }) => {
     <div className="relative z-30">
       <div
         onClick={toggleMenu}
-        className="flex gap-1 items-center p-2 border-[1px] border-slate-100 rounded-full cursor-pointer hover:shadow-md duration-300 transition text-slate-100"
+        className="flex gap-1 items-center xs:p-1 sm:p-2 border-[1px] border-slate-100 rounded-full cursor-pointer hover:shadow-md duration-300 transition text-slate-100"
       >
         <FaUserCircle />
         <AiFillCaretDown />

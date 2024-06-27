@@ -9,7 +9,7 @@ import { FaCity } from "react-icons/fa";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MdMap, MdMapsHomeWork, MdPhone } from "react-icons/md";
 import { loadStripe } from "@stripe/stripe-js";
-import { resetCart, saveOrder } from "../redux/shopSlice";
+import { resetCart } from "../redux/shopSlice";
 
 
 const FormSchema = z.object({
@@ -75,6 +75,7 @@ const CartCheckout = ({ currentUser }) => {
           }
 
           const data = await response.json();
+          
           if (data.id) {
             const stripe = await stripePromise;
             const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
@@ -98,7 +99,6 @@ const CartCheckout = ({ currentUser }) => {
       if (productData.length > 0) {
         createCheckout();
         dispatch(resetCart(productData))
-        dispatch(saveOrder(productData));
         reset()
       }
     };

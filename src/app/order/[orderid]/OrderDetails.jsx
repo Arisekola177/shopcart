@@ -6,7 +6,6 @@ import { MdAccessTimeFilled, MdDeliveryDining, MdDone } from 'react-icons/md';
 import OrderItems from '../OrderItems'
 const OrderDetails = ({order}) => {
 
-console.log(order)
   return (
     <div className="w-10/12 mx-auto py-16 flex flex-col gap-2">
        <div className="mt-8">
@@ -17,20 +16,15 @@ console.log(order)
        <div>Total Amount: <span className="font-bold"><FormattedPrice amount={order.amount} /></span></div>
        <div className='flex gap-2 items-center'>
        <div>Payment Status:</div>
-       <div>
-          {order.status === 'pending' ? 
-          <Status text='pending' 
-          Icon={MdAccessTimeFilled} 
-          bg='bg-slate-200'
-           color='text-slate-700' />: 
-           order.status === 'completed' ?
-           <Status text='completed'
-            Icon={MdDone} 
-            bg='bg-green-200'
-             color='text-purple-700' />:
-             <></>
-        }
-       </div>
+       <div className='font-bold flex items-center'>
+          {order.status === 'pending' ? (
+            <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200' color='text-slate-700' />
+          ) : order.status === 'completed' ? (
+            <Status text='completed' Icon={MdDone} bg='bg-green-200' color='text-purple-700' />
+          ) : order.status === 'success' ? (
+            <Status text='success' Icon={MdDone} bg='bg-green-200' color='text-green-700' />
+          ) : <></>}
+        </div>
        </div>
        <div className='flex gap-2 items-center'>
        <div>Delivery Status:</div>

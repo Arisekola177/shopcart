@@ -19,6 +19,8 @@ const CartItems = ({ currentUser, productData }) => {
      }
   }
 
+  console.log(productData)
+
   return (
     <div className="grid xs:grid-cols-1 md:grid-cols-6">
       <div className="bg-white md:col-span-3 xs:col-span-6 p-4 rounded-lg">
@@ -51,7 +53,7 @@ const CartItems = ({ currentUser, productData }) => {
                 </div>
                   <div className="col-span-3 flex items-center rounded-md gap-4">
                     <div className="flex flex-col gap-1">
-                      <p className="text-sm font-semibold text-blue-800">{product.title}</p>
+                      <p className="text-sm font-semibold text-blue-800">{product.name}</p>
                       <p className="text-sm text-gray-600">{product.description.substring(0, 100)}....</p>
                       <div className="flex md:flex-row xs:flex-col items-start md:items-center gap-2">
                         <p className="text-sm text-gray-600">
@@ -67,6 +69,7 @@ const CartItems = ({ currentUser, productData }) => {
                                 dispatch(
                                   decreaseQty({
                                     id: product.id,
+                                    name:product.name,
                                     brand: product.brand,
                                     category: product.category,
                                     description: product.description,
@@ -89,6 +92,7 @@ const CartItems = ({ currentUser, productData }) => {
                                 dispatch(
                                   increaseQty({
                                     id: product.id,
+                                    name:product.name,
                                     brand: product.brand,
                                     category: product.category,
                                     description: product.description,

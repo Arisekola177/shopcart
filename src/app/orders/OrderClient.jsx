@@ -38,15 +38,19 @@ const OrderClient = ({ orders }) => {
       field: 'paymentStatus',
       headerName: 'Payment Status',
       width: 130,
-      renderCell: (params) => (
-        <div className='font-bold flex items-center'>
-          {params.row.status === 'pending' ? (
-            <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200' color='text-slate-700' />
-          ) : params.row.status === 'completed' ? (
-            <Status text='completed' Icon={MdDone} bg='bg-green-200' color='text-purple-700' />
-          ) : <></>}
-        </div>
-      ),
+      renderCell: (params) => {
+        return (
+          <div className='font-bold flex items-center'>
+            {params.row.paymentStatus === 'pending' ? (
+              <Status text='pending' Icon={MdAccessTimeFilled} bg='bg-slate-200' color='text-slate-700' />
+            ) : params.row.paymentStatus === 'completed' ? (
+              <Status text='completed' Icon={MdDone} bg='bg-green-200' color='text-purple-700' />
+            ) : params.row.paymentStatus === 'success' ? (
+              <Status text='success' Icon={MdDone} bg='bg-green-200' color='text-green-700' />
+            ) : <></>}
+          </div>
+        );
+      },
     },
     {
       field: 'deliveryStatus',

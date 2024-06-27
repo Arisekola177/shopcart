@@ -32,7 +32,7 @@ const productRating = product.reviews?.length > 0? product.reviews.reduce((acc, 
     
     return (
         <div className="w-full  mb-10">
-         <div className="md:w-8/12 xs:w-10/12  mx-auto mt-10 p-5 grid grid-cols-1 md:grid-cols-2  xs:gap-8 md:gap-0 shadow-xl ">
+         <div className="md:w-8/12 xs:w-10/12  mx-auto mt-10 p-5 grid grid-cols-1 md:grid-cols-2 xs:gap-8 md:gap-0  ">
          <div className="flex py-6 flex-col items-center gap-3">
               <div className="max-w-[300px] place-items-center">
 
@@ -81,6 +81,7 @@ const productRating = product.reviews?.length > 0? product.reviews.reduce((acc, 
                         product.inStock ? ( <div className="">
                             <button onClick={() => dispatch(addToCart({
                                  id: product.id,
+                                 name:product.name,
                                  brand: product.brand,
                                  category: product.category,
                                  description: product.description,
@@ -95,7 +96,7 @@ const productRating = product.reviews?.length > 0? product.reviews.reduce((acc, 
                             )} className="bg-black w-full text-white md:font-semibold xs:px-2 py-3 md:px-4 rounded-lg group-hover:bg-yellow-700">Add to cart</button>
                         </div>) : (
                              <div >
-                             <button className="text-red-500 w-full">Not In-stock</button>
+                             <button disabled className="bg-black w-full text-red-500 md:font-semibold xs:px-2 py-3 md:px-4 rounded-lg ">Not In-stock</button>
                          </div>
                         )
                     }
@@ -103,6 +104,7 @@ const productRating = product.reviews?.length > 0? product.reviews.reduce((acc, 
                     <div>
                         <button onClick={() => dispatch(addToWish({
                            id: product.id,
+                           name:product.name,
                            brand: product.brand,
                            category: product.category,
                            description: product.description,
