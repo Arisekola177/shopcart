@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import BottomNavbar from './components/Navbars/BottomNavbar'
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
-import ProductNav from './components/Navbars/ProductNav'
+
 
 const inter = Inter({ subsets: ["latin"] });
 

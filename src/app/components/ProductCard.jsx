@@ -1,20 +1,13 @@
 
-
 'use client'
 import Image from "next/image";
 import FormattedPrice from "./FormattedPrice";
-import { useDispatch } from "react-redux";
-import { addToWish } from "../redux/shopSlice";
 import { useRouter } from "next/navigation";
-import { BsSuitHeartFill } from "react-icons/bs";
 import { MdOutlineLabelImportant } from "react-icons/md";
-import { toast } from "react-toastify";
 
 const ProductCard = ({ product }) => {
-  const dispatch = useDispatch();
+ 
   const router = useRouter();
-
-  
 
   return (
     <>
@@ -35,8 +28,8 @@ const ProductCard = ({ product }) => {
           )}
        
         </div>
-        <div className="w-full h-28 absolute bg-white -bottom-[230px] group-hover:bottom-0 duration-700">
-          <ul className="w-full h-full flex flex-col items-center justify-center gap-2  px-2 border-l border-r">
+        <div className="w-full h-10 absolute bg-white -bottom-[230px] group-hover:bottom-0 duration-700">
+          <ul className="w-[80%] mx-auto h-full flex flex-col items-center justify-end gap-2 px-2 border-l border-r">
             <li
               onClick={() => router.push(`/product/${product.id}`)}
               className="text-[#767676] xs:text-[8px] sm:text-[10px] font-normal border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
@@ -44,29 +37,6 @@ const ProductCard = ({ product }) => {
               View Details
               <span className="text-xs">
                 <MdOutlineLabelImportant />
-              </span>
-            </li>
-            <li
-             onClick={() => dispatch(addToWish({
-              id: product.id,
-              name:product.name,
-              brand: product.brand,
-              category: product.category,
-              description: product.description,
-              image: product.image,
-              isNew: product.isNew,
-              oldPrice: product.oldPrice,
-              price: product.price,
-              title: product.title,
-              quantity: 1,
-           })) && toast.success(
-               `${product.name} added successfully!`
-           )}
-              className="text-[#767676] xs:text-[8px] sm:text-[10px] font-normal border-b-[1px] border-b-gray-200  flex items-center justify-start gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
-            >
-              Add to Wish List
-              <span>
-                <BsSuitHeartFill />
               </span>
             </li>
           </ul>

@@ -19,11 +19,9 @@ const CartItems = ({ currentUser, productData }) => {
      }
   }
 
-  console.log(productData)
-
   return (
-    <div className="grid xs:grid-cols-1 md:grid-cols-6">
-      <div className="bg-white md:col-span-3 xs:col-span-6 p-4 rounded-lg">
+    <div className="grid xs:grid-cols-1 lg:grid-cols-6">
+      <div className="bg-white md:col-span-4 xs:col-span-6 p-4 rounded-lg">
         <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1">
           <p className="md:text-xl text-sm font-semibold text-blue-800">Shopping Cart</p>
           <p className="md:text-xl text-sm font-semibold text-blue-800">Subtitle</p>
@@ -40,21 +38,23 @@ const CartItems = ({ currentUser, productData }) => {
                      className="text-sm pt-2 font-medium text-gray-400 hover:text-red-600 cursor-pointer duration-300">
                             <FaTimes />
                      </div>
-                  <div className="w-20 h-20 md:max-w-36 md:max-h-32 flex flex-col">
+                  <div className="w-20 h-20 md:max-w-40 md:max-h-40 flex xs:flex-row gap-1 items-center md:flex-col">
                     <Image
                       src={selectedImage.image}
                       alt={product.title}
                       width={300}
                       height={300}
-                      className="w-full h-auto object-contain px-4 rounded-lg"
+                      className="w-full h-auto object-contain aspect-square px-4 rounded-lg"
                     />
-                   <p className="text-xs py-2 font-semibold">Color: {selectedImage.color}</p>
+                   <p className="text-xs py-4 font-semibold">Color:{selectedImage.color}</p>
                   </div>
                 </div>
                   <div className="col-span-3 flex items-center rounded-md gap-4">
                     <div className="flex flex-col gap-1">
-                      <p className="text-sm font-semibold text-blue-800">{product.name}</p>
-                      <p className="text-sm text-gray-600">{product.description.substring(0, 100)}....</p>
+                      <p className="md:block xs:hidden text-sm font-semibold text-blue-800">{product.name}</p>
+                      <p className="xs:block md:hidden text-sm font-semibold text-blue-800">{product.name.substring(0, 60)}....</p>
+                      <p className="md:block xs:hidden text-sm text-gray-600">{product.description.substring(0, 100)}....</p>
+                      <p className="xs:block md:hidden text-sm text-gray-600">{product.description.substring(0, 40)}....</p>
                       <div className="flex md:flex-row xs:flex-col items-start md:items-center gap-2">
                         <p className="text-sm text-gray-600">
                           Unit Price{" "}
@@ -128,7 +128,7 @@ const CartItems = ({ currentUser, productData }) => {
           </div>
         </div>
       </div>
-      <div className="md:col-span-3 xs:col-span-6 p-4">
+      <div className="md:col-span-2 xs:col-span-6 p-4">
         <div className="rounded-lg">
           <div className="border-b-[1px] border-b-gray-400 pb-1">
             <p className="text-xl font-semibold text-blue-800">Checkout</p>

@@ -34,61 +34,61 @@ const Footer = () => {
 
     <div className='w-full bg-[#131921]'>
        <div className='w-10/12 mx-auto grid xs:grid-cols-1 md:grid-cols-6 gap-3 py-12'>
-         <div className='col-span-2 flex flex-col gap-6 xs:items-center md:items-start '>
+         <div className='col-span-2 flex flex-col gap-3 xs:items-center md:items-start '>
              <Link href='/'>
-             <h1 className="font-bold text-xl tracking-wide text-blue-600 cursor-pointer">SHOP<span className="text-yellow-400">CART</span></h1>
+             <h1 className="font-bold text-sm lg:text-xl tracking-wide text-blue-600 cursor-pointer">SHOP<span className="text-yellow-400">CART</span></h1>
              </Link>
-             <p className='text-white text-xs xs:mx-auto md:mx-0 leading-6 w-[80%]'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sint ab ullam, numquam nesciunt in</p>
+             <p className='text-white md:text-start xs:text-center md:text-[8px] xs:text-[8px] sml:text-xs lg:text-xs lg:w-[80%] xs:mx-auto md:mx-0 leading-4 w-full'>Welcome to Your One-Stop Gadget Shop</p>
              <div className='flex items-center gap-2'>
-               <FaGithub className='text-gray-400 text-xl' />
-               <FaTwitter className='text-gray-400 text-xl' />
-               <FaLinkedin className='text-gray-400 text-xl' />
+               <FaGithub className='text-gray-400 text-lg md:text-xl' />
+               <FaTwitter className='text-gray-400 text-lg md:text-xl' />
+               <FaLinkedin className='text-gray-400 text-lg md:text-xl' />
              </div>
          </div>
          <div className='col-span-2 text-white xs:mx-auto md:mx-0 xs:py-4 md:py-0 grid grid-cols-2 xs:gap-10 md:gap-6'>
          <div className=''>
-            <h2 className='lg:text-lg xs:text-sm mb-4'>Shop</h2>
+            <h2 className='sml:text-lg md:text-xs lg:text-lg xs:text-xs mb-4'>Shop</h2>
           <ul className="flex flex-col gap-2">
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            <li className="xs:text-[8px] md:text-[8px] lg:text-[12px] sml:text-sm hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Accesories
             </li>
-            <li className=" text-xs  hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Clothes
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px]  hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+              Laptops
             </li>
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Electronics
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            Phones
             </li>
-            <li className=" text-xs  hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Home appliances
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+              Watches
             </li>
-            <li className=" text-xs  hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              New Arrivals
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px]  hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+             Desktop
             </li>
           </ul>
         </div>
         <div className=''>
-          <h2 className='lg:text-lg xs:text-sm mb-4'>Your Account</h2>
+          <h2 className='sml:text-lg md:text-sm lg:text-lg xs:text-xs mb-4'>Your Account</h2>
           <ul className="flex flex-col gap-2">
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Profile
             </li>
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Orders
             </li>
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Addresses
             </li>
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Account Details
             </li>
-            <li className=" text-xs hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
+            <li className=" xs:text-[8px] md:text-[8px] sml:text-sm lg:text-[12px] hover:text-slate-400 hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
               Payment Options
             </li>
           </ul>
         </div>
         </div>
         <div className="col-span-2 flex flex-col px-4 xs:items-center md:items-start">
-        <h2 className='text-white mb-4 xs:text-sm lg:text-xl line-clamp-1'>Subscribe to our Newsletter</h2>
+        <h2 className='text-white mb-4 xs:text-[8px] md:text-sm sml:text-sm lg:text-lg line-clamp-1'>Subscribe to our Newsletter</h2>
           <div className="w-full">
             {subscription ? (
               <motion.p
@@ -105,7 +105,7 @@ const Footer = () => {
                   <input
                     onChange={(e) => setEmailInfo(e.target.value)}
                     value={emailInfo}
-                    className="w-full h-12 border-b border-gray-400 bg-transparent px-4 xs:text-xs md:text-lg placeholder:md:text-base outline-none"
+                    className="w-full h-12 border-b border-gray-400 bg-transparent px-4 xs:text-xs md:text-lg placeholder:md:text-[8px] placeholder:lg:text-base outline-none"
                     type="text"
                     placeholder="Insert your email ...*"
                   />
@@ -117,7 +117,7 @@ const Footer = () => {
                 </div>
                 <button
                   onClick={handleSubscription}
-                  className="bg-white xs:w-full lg:w-[30%] h-10 rounded-lg shadow-lg hover:bg-black hover:text-white duration-300 xs:text-xs md:text-sm tracking-wide"
+                  className="bg-white xs:w-full lg:w-[30%] h-10 rounded-lg shadow-lg hover:bg-black hover:text-white duration-300 xs:text-xs lg:text-xs md:text-[8px] tracking-wide"
                 >
                   Subscribe
                 </button>
@@ -136,7 +136,7 @@ const Footer = () => {
        </div>
        <div className="w-full text-white group">
       <div className="md:max-w-container xs:w-full mx-auto border-t-[1px] pt-10 pb-20">
-        <p className=" font-normal text-center flex md:items-center justify-center  duration-200 text-xs">
+        <p className=" font-normal text-center flex md:items-center justify-center  duration-200 xs:text-[8px] md:text-[8px]  lg:text-sm sml:text-sm">
           <span className="text-md mr-[1px] mt-[2px] md:mt-0 text-center hidden md:inline-flex">
             <AiOutlineCopyright />
           </span>

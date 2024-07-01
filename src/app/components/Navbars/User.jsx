@@ -1,5 +1,4 @@
 
-
 'use client';
 import React, { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
@@ -24,7 +23,7 @@ const User = ({ currentUser }) => {
         <AiFillCaretDown />
       </div>
       {open && (
-        <div className="absolute rounded-md flex flex-col items-center bg-white shadow-md w-[170px] right-0 top-12 overflow-hidden text-sm cursor-pointer">
+        <div className="absolute rounded-md flex flex-col items-center bg-white shadow-md w-[170px] right-0 top-12 overflow-hidden text-sm text-black cursor-pointer">
           {currentUser ? (
             <div>
               <div className="px-4 py-3">

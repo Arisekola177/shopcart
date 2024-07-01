@@ -43,50 +43,13 @@ const Navbar =  () => {
                      SHOP<span className="text-yellow-400">CART</span>
                     </h1>
                  </Link>
-                 <p className='text-xs'>Your one stop gadget shop</p>
+                 <p className='text-xs'>Welcome to Your One-Stop Gadget Shop</p>
                  </div>
                  <div className='flex flex-col gap-4 px-4 py-2'>
                  <Link className='text-xs' href='/'>Home</Link>
-                 <Link className='text-xs' href='/products'>Products</Link>
-                 <Link className='text-xs' href='/about'>About</Link>
-                 <Link className='text-xs' href='/contact'>Contact</Link>
                  <Link className='text-xs' href='/login'>Login</Link>
                  <Link className='text-xs' href='/register'>Register</Link>
                  </div>
-                 <div className='grid grid-cols-2 gap-4'>
-                 <div className="px-4 py-2">
-                <h1 className="text-sm font-semibold">Category</h1>
-                <div className="mt-2 flex flex-col items-start gap-4">
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Headphones</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Tablets</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Smart Watch</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Chair</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Phones</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Keyboard</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Mouse</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Laptop</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Monitor</p>
-                </div>
-             </div>
-             <div className="px-4 py-2">
-                <h1 className="text-sm font-semibold">Brand</h1>
-                <div className="mt-2 flex flex-col items-start gap-4">
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Samsung</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Apple</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Logitech</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Gtracing</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Redragon</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Hp</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Manhattan</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Tecknet</p>
-                  <p className="cursor-pointer text-xs hover:text-black hover:scale-x-95 duration-200">Zihnic</p>
-                
-                </div> 
-
-             </div>
-                 </div>
-
-                
                  </div>
                  <div className='px-4 py-2'>
                   {
@@ -94,11 +57,7 @@ const Navbar =  () => {
                   }
                  </div>
               </div>
-          
-          
             </div>
-        
-         
          </div>
           <Link href='/'>
             <h1 className="sm:font-bold xs:font-semibold xs:text-xs sm:text-sm lg:text-xl md:tracking-wide text-blue-600 cursor-pointer">
@@ -119,11 +78,12 @@ const Navbar =  () => {
           <Link href='/wishlist' >
           <Wishcounter />
           </Link>
-          </div>
-      
-            <div className=''>
+          <div className=''>
              <User currentUser={currentUser} />
              </div>
+          </div>
+      
+          
          
       </div>
     </div>

@@ -33,8 +33,6 @@ const CartCheckout = ({ currentUser }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [totalAmount, setTotalAmount] = useState(0);
-  const [vat, setVat] = useState(0);
-  const [delivery, setDelivery] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   
@@ -48,8 +46,6 @@ const CartCheckout = ({ currentUser }) => {
       amt += item.price * item.quantity;
     });
     setTotalAmount(amt);
-    setVat(amt * 0);
-    setDelivery(amt * 0);
   }, [productData]);
 
     const createCheckout = async (formData) => {
@@ -67,12 +63,15 @@ const CartCheckout = ({ currentUser }) => {
             }),
           });
 
+          dispatch(resetCart(productData))
+
           if (!response.ok) {
             console.error('Error creating checkout:', response.statusText);
             setLoading(false);
             setError(true);
             return;
           }
+          
 
           const data = await response.json();
           
@@ -98,7 +97,7 @@ const CartCheckout = ({ currentUser }) => {
 
       if (productData.length > 0) {
         createCheckout();
-        dispatch(resetCart(productData))
+      
         reset()
       }
     };
@@ -106,7 +105,7 @@ const CartCheckout = ({ currentUser }) => {
   return (
     <div className="mt-5 bg-gray-100 rounded-md">
     <form onSubmit={handleSubmit(createCheckout)} className="py-6  ">
-      <div className="grid grid-cols-1 justify-between gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 items-center gap-6 ">
     <div className=" px-4 col-span-1">
       <h2 className="uppercase text-xs font-semibold p-2">Delivery information</h2>
     
@@ -115,7 +114,7 @@ const CartCheckout = ({ currentUser }) => {
      {...register("city")}
       type="text"
       placeholder="City"
-      className="rounded-lg py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
+      className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
       <FaCity className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`} />
        {errors.city && (
        <div className="absolute left-0 top-full mt-1 text-red-500 text-xs">
@@ -128,7 +127,7 @@ const CartCheckout = ({ currentUser }) => {
                {...register("state")}
               type="text"
               placeholder="State"
-              className="rounded-lg py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
+              className="rounded-lg w-full py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
              <MdMap className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`}/>
              {errors.state && (
                 <div className="absolute left-0 top-full mt-1 text-red-500 text-xs">{errors.state.message}</div>
@@ -139,7 +138,7 @@ const CartCheckout = ({ currentUser }) => {
                {...register("phone")}
               type="text"
               placeholder="Phone"
-              className="rounded-lg py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
+              className="rounded-lg w-full py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
              <MdPhone className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`}/>
              {errors.phone && (
                 <div className="absolute left-0 top-full mt-1 text-red-500 text-xs">{errors.phone.message}</div>
@@ -150,7 +149,7 @@ const CartCheckout = ({ currentUser }) => {
                {...register("country")}
               type="text"
               placeholder="Country"
-              className="rounded-lg py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
+              className="rounded-lg w-full py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
              <MdMapsHomeWork className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`}/>
              {errors.country && (
                 <div className="absolute left-0 top-full mt-1 text-red-500 text-xs">{errors.country.message}</div>
@@ -158,35 +157,16 @@ const CartCheckout = ({ currentUser }) => {
              </div>
       </div>
 
-     <div className="col-span-1 px-4">  
+     <div className="col-span-1  px-4">  
       <h2 className="uppercase text-xs font-semibold py-4">Payment Information</h2>
       <p className="border-[1px] border-b"></p>
       <div className="flex justify-between items-center py-4 ">
-        <p className="uppercase text-blue-500 text-xs font-semibold">sub-total</p>
-        <p className="text-sm font-semibold">
+        <p className="uppercase text-blue-500 text-sm font-semibold">sub-total</p>
+        <p className="text-lg font-semibold">
           <FormattedPrice amount={totalAmount} />
         </p>
       </div>
-      <div className="flex justify-between items-center py-4">
-        <p className="uppercase text-yellow-500 text-xs font-semibold">vat</p>
-        <p className="text-sm font-semibold">
-          <FormattedPrice amount={vat} />
-        </p>
-      </div>
-      <div className="flex justify-between items-center py-4">
-        <p className="uppercase text-blue-800 text-xs font-semibold">Delivery fee</p>
-        <p className="text-sm font-semibold">
-        <FormattedPrice amount={delivery} />
-        </p>
-      </div>
-      <p className="border-[1px] border-b"></p>
-      <div className="flex justify-between items-center mt-5">
-        <p className="uppercase text-sm font-semibold">total</p>
-        <p className="text-sm font-semibold">
-          <FormattedPrice amount={totalAmount} />
-        </p>
-      </div>
-     </div> 
+     </div>
      </div>
       <div className="w-full">
         {currentUser ? (

@@ -103,17 +103,17 @@ const productRating = product.reviews?.length > 0? product.reviews.reduce((acc, 
                    
                     <div>
                         <button onClick={() => dispatch(addToWish({
-                           id: product.id,
-                           name:product.name,
-                           brand: product.brand,
-                           category: product.category,
-                           description: product.description,
-                           image: selectedImage,
-                           isNew: product.isNew,
-                           oldPrice: product.oldPrice,
-                           price: product.price,
-                           title: product.title,
-                           quantity: 1,
+                         id: product.id,
+                         name:product.name,
+                         brand: product.brand,
+                         category: product.category,
+                         description: product.description,
+                         selectedImage: selectedImage,
+                         isNew: product.isNew,
+                         oldPrice: product.oldPrice,
+                         price: product.price,
+                         title: product.title,
+                         quantity: 1,
                         })) && toast.success(
                             `${product.name} added successfully!`
                         )} className="bg-yellow-800 w-full text-white md:font-semibold xs:px-2 py-3 md:px-4 rounded-lg group-hover:bg-black">Add to wishlist</button>

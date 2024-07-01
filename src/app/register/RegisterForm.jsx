@@ -57,6 +57,7 @@ const RegisterForm = ({currentUser}) => {
  
 
   const saveUser = async (data) => {
+    toast('Loading, please wait.....')
     setLoading(true)
     axios.post('/api/register', data)  
     .then(() => {
@@ -88,34 +89,34 @@ const RegisterForm = ({currentUser}) => {
   }
 
   return (
-    <div className="w-10/12 mx-auto grid grid-cols-3 justify-between">
+    <div className="w-10/12 mx-auto md:mt-5 xs:mt-10 grid xs:grid-cols-1 md:grid-cols-3 justify-between">
       <div className="col-span-1">
       <div className='flex flex-col items-center justify-center h-full '>
            <div className="">
                 <Link className="flex items-center gap-2" href='/'>
-                   <h1 className="text-5xl font-semibold mb-2 text-blue-600 cursor-pointer">
+                   <h1 className="xl:text-5xl xs:text-xl md:text-2xl font-semibold mb-2 text-blue-600 cursor-pointer">
                      SHOP<span className="text-yellow-400">CART</span>
                     </h1>
                   <div className="">
-                  <MdShoppingCart className="text-5xl " />
+                  <MdShoppingCart className="lg:text-5xl xs:text-xl md:text-2xl " />
                  </div>
                  </Link>
-                 <p className='text-xl mt-5'>Your one stop gadget shop</p>
+                 <p className='lg:text-lg xs:text-sm xs:mt-2 md:mt-5'>Welcome to Your One-Stop Gadget Shop</p>
                  
               </div>
           </div>
       </div>
       <div className="grid col-span-2 justify-center items-center py-8">
         <div className="bg-slate-50 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-center py-4">Sign Up</h2>
+          <h2 className="md:text-2xl xs:text-lg font-bold text-center py-4">Sign Up</h2>
           <form onSubmit={handleSubmit(saveUser)} className="py-4 px-6 grid grid-cols-2 items-center gap-4">
             
-           <div className={`relative w-full ${errors ? 'mb-6' : 'mb-0'}`}>
+           <div className={`relative w-full  ${errors ? 'mb-6' : 'mb-0'}`}>
                   <input
                   {...register("firstName")}
                   type="text"
                   placeholder="First Name"
-                   className="rounded-lg py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500"
+                   className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500"
                     />
                    <FaUser className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`} />
                    {errors.firstName && (
@@ -125,12 +126,12 @@ const RegisterForm = ({currentUser}) => {
                       )}
                 </div>
 
-           < div className={`relative w-full ${errors ? 'mb-6' : 'mb-0'}`}>
+           < div className={`relative w-full  ${errors ? 'mb-6' : 'mb-0'}`}>
             <input 
                {...register("lastName")}
               type="text"
               placeholder="Last Name"
-              className="rounded-lg py-2 px-10 outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500"
+              className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500"
               
             />
              <FaUser className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`}/>

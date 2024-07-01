@@ -4,12 +4,21 @@ import getUsers from '../../../actions/getUsers'
 import Summary from './Summary'
 import BarGraph from './BarGraph'
 import getGraphData from '../../../actions/getGraphData'
+import Nulldata from "../components/Nulldata"
+import { getUser } from "../../../actions/getUser"
+
+
 const Admin = async() => {
 
   const products = await getProduct({category: null})
   const orders = await getOrders()
   const users = await getUsers()
   const graphData = await getGraphData()
+  const currentUser = await getUser()
+
+  if(!currentUser || currentUser.role !== 'ADMIN'){
+    return  <Nulldata title='Oops! Access denied' />
+  }
   return (
 
    

@@ -17,8 +17,8 @@ if(!isMainPage) return null;
   return (
     <div className="w-6/12 mx-auto transition-colors">
          <div className=" ">
-         <h2 className=" font-semibold text-sm py-3">Product Categories</h2>
-             <div className="flex flex-col gap-3 overflow-hidden">
+       
+             <div className="flex flex-col md:gap-1 xl:gap-3 overflow-hidden">
           
                  {
                   categories.map((item) => (

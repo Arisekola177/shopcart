@@ -37,12 +37,12 @@ const Category = ({label, Icon, selected}) => {
 
   },[label, params, router] )  
   return (
-    <div onClick={handleClick} className={`flex items-center justify-between text-center  p-2 border-b-2 hover:text-slate-400 transition cursor-pointer
+    <div onClick={handleClick} className={`flex items-center justify-between text-center lg:p-2 p-1 border-b-2 hover:text-slate-400 transition cursor-pointer
       ${selected ? 'border-b-slate-800 text-slate-800' : 'border-transparent text-slate-500'}
     `}>
       
-      <Icon size={20} />
-      <div className="font-medium text-sm">{label}</div>
+      <Icon size={14} />
+      <div className="font-medium md:text-[10px] xl:text-sm">{label}</div>
     </div>
   )
 }

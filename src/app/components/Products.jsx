@@ -20,10 +20,10 @@ const Products = ({ shuffledProductData }) => {
 
   return (
     <div className="w-full h-full">
-      <div className="grid grid-cols-4 xs:gap-2 md:gap-6 w-10/12 mx-auto">
+      <div className="grid grid-cols-4 xs:gap-2 md:gap-6 lg:gap-2 w-10/12 mx-auto">
         <div className="xs:col-span-4 mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xs:gap-2 md:gap-4 py-4">
           {currentProducts.map((product) => (
-            <div key={product.id} className="bg-white md:w-[200px] lg:w-[250px] w-full md:h-[250px] flex flex-col shadow-lg rounded-tr-lg rounded-tl-lg cursor-pointer relative">
+            <div key={product.id} className="bg-white md:w-[200px] xl:w-[250px] w-full md:h-[250px] flex flex-col shadow-lg rounded-tr-lg rounded-tl-lg cursor-pointer relative">
               <ProductCard product={product} />
             </div>
           ))}
