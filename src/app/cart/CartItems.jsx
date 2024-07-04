@@ -26,7 +26,7 @@ const CartItems = ({ currentUser, productData }) => {
           <p className="md:text-sm xs:text-xs font-semibold text-blue-800">Shopping Cart</p>
           <p className="md:text-sm xs:text-xs font-semibold text-blue-800">Subtotal</p>
         </div>
-        <div className="md:py-3 xs:py-0">
+        <div className="py-3">
           {
             productData.map((product) => {
               const {selectedImage} = product

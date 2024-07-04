@@ -12,8 +12,8 @@ const Review = ({ product }) => {
   }
 
   return (
-    <div className="font-inter max-w-[400px]">
-      <h2 className="mb-5 font-bold text-3xl">Reviews</h2>
+    <div className=" max-w-[400px]">
+      <h2 className="mb-5 font-bold xs:text-sm md:text-xl xl:text-3xl">Reviews</h2>
       {product.review.map((review) => (
         <div className='flex flex-col gap-3' key={review.id}>
           <div className="flex items-center gap-4">
@@ -29,7 +29,7 @@ const Review = ({ product }) => {
                 <FaUserCircle />
               )}
             </div>
-            <h2 className="font-bold text-lg">
+            <h2 className="font-bold xs:sm xl:text-lg">
               {review.user ? `${review.user.firstName} ${review.user.lastName}` : "Anonymous"}
             </h2>
             <h2>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true })}</h2>
