@@ -4,13 +4,6 @@ import { NextResponse } from 'next/server';
 import prisma from '../../../../libs/prisma';
 import { getUser } from '../../../../../actions/getUser';
 
-export const segmentConfig = {
-  api: {
-    bodyParser: {
-      sizeLimit: '1mb',
-    },
-  },
-};
 
 export async function DELETE(req, { params }) {
   try {
