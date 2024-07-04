@@ -1,4 +1,4 @@
-
+export const revalidate = 0;
 import Products from './components/Products'
 import getProduct from '../../actions/getProduct'
 import Nulldata from "./components/Nulldata";
