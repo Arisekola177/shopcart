@@ -8,36 +8,38 @@ import { toast } from "react-toastify";
 const WishListItems = ({product}) => {
     const dispatch = useDispatch()
     const {selectedImage} = product
-  return (
-    <div className="flex py-4 ">
-      <div>
+  return ( 
+    <div className="grid xs:grid-cols-1 xs:gap-2 md:grid-cols-4 py-3 ">
+      <div className="flex gap-2 items-center md:gap-4 ">
         <div onClick={() => dispatch(deleteWish(product.id)) && toast.error( `${product.name.substring(0, 15)} removed successfully!`)}
-              className="text-sm font-medium text-gray-400 hover:text-red-600 cursor-pointer duration-300">
+              className="md:text-sm xs:text-xs  font-medium text-red-400 hover:text-red-600 cursor-pointer duration-300">
               <FaTimes / >
          </div>
-       <div className="w-20 h-20 md:w-28 md:h-28">
+       <div className="xs:max-w-20 xs:max-h-16 md:max-w-28 md:max-h-28 xl:max-w-32 xl:max-h-32 flex xs:flex-row gap-1 items-center md:flex-col">
       <Image
        src={selectedImage.image}
       alt={product.title}
       width={100}
       height={100}
-      className="object-contain w-full h-auto px-4 aspect-square rounded-lg"
+      className="w-full h-auto object-contain aspect-square px-4 rounded-lg"
       />
+       <p className="md:text-xs xs:text-[8px]  font-semibold">Color:{selectedImage.color}</p>
      </div>
      </div>
-      <div className=" flex items-center rounded-md gap-4">
+      <div className="col-span-3 flex items-center rounded-md gap-4">
         <div className="flex flex-col gap-1">
-          <p className="text-sm font-semibold text-blue-800">{product.name}</p>
-          <p className="text-sm text-gray-600">{product.description.substring(0, 300)}....</p>
-        
-          <div className="flex items-center gap-3">
-            <p className="text-sm text-gray-600">
+          <p className="md:block xs:hidden text-sm font-semibold text-blue-800">{product.name}</p>
+          <p className="xs:block md:hidden md:text-sm xs:text-[10px] font-semibold text-blue-800">{product.name.substring(0, 60)}....</p>
+          <p className="md:block xs:hidden text-sm text-gray-600">{product.description.substring(0, 100)}....</p>
+          <p className="xs:block md:hidden md:text-sm xs:text-[10px] text-gray-600">{product.description.substring(0, 40)}....</p>
+          <div className="flex md:flex-row xs:flex-col items-start md:items-center gap-2">
+            <p className="md:text-sm xs:text-[10px] text-gray-600">
             Unit Price{" "}
-            <span className="font-semibold text-blue-800">
+            <span className="font-semibold md:text-sm xs:text-[10px] text-blue-800">
               <FormattedPrice amount={product.price} />
             </span>
           </p>
-          <div>
+          <div className="py-2">
                         <button onClick={() => dispatch(addToCart({
                                 id: product.id,
                                 name:product.name,
@@ -51,13 +53,13 @@ const WishListItems = ({product}) => {
                                 quantity: 1,
                         })) && toast.success(
                             `${product.name.substring(0, 15)} added successfully!`
-                        )} className="bg-blue-600 xs:text-xs lg:text-sm text-white p-2 rounded-lg hover:bg-blue-700 ">Add to cart</button>
+                        )} className="text-white xs:text-xs md:text-sm bg-blue-500 rounded-md xs:py-1 md:py-2 md:px-3 xs:px-2 hover:bg-blue-900 duration-300">Add to cart</button>
           </div>
           
           </div>
         </div>
       
-        <div className="lg:text-lg xs:text-xs md:text-sm font-semibold ">
+        <div className="md:text-lg xs:text-sm font-semibold ">
           <FormattedPrice amount={product.price * product.quantity} />
         </div>
       </div>

@@ -85,38 +85,36 @@ const RegisterForm = ({currentUser}) => {
   };
   
   if(currentUser){
-    return   <p className="text-center py-16 text-2xl">Logged In.....Redirecting</p>
+    return  <p className="w-full h-full flex items-center justify-center text-xl">Logged In.....Redirecting</p>
   }
 
   return (
     <div className="w-10/12 mx-auto md:mt-5 xs:mt-10 grid xs:grid-cols-1 md:grid-cols-3 justify-between">
       <div className="col-span-1">
       <div className='flex flex-col items-center justify-center h-full '>
-           <div className="">
-                <Link className="flex items-center gap-2" href='/'>
-                   <h1 className="xl:text-5xl xs:text-xl md:text-2xl font-semibold mb-2 text-blue-600 cursor-pointer">
+                <Link className="flex items-center gap-1" href='/'>
+                   <h1 className="xl:text-5xl xs:text-sm sm:text-lg md:text-2xl font-semibold mb-2 text-blue-600 cursor-pointer">
                      SHOP<span className="text-yellow-400">CART</span>
                     </h1>
                   <div className="">
                   <MdShoppingCart className="lg:text-5xl xs:text-xl md:text-2xl " />
                  </div>
                  </Link>
-                 <p className='lg:text-lg xs:text-sm xs:mt-2 md:mt-5'>Welcome to Your One-Stop Gadget Shop</p>
+                 <p className='xl:text-lg xs:text-[8px] md:text-[10px] sml:text-sm xs:mt-2 md:mt-5'>Welcome to Your One-Stop Gadget Shop</p>
                  
-              </div>
           </div>
       </div>
       <div className="grid col-span-2 justify-center items-center py-8">
         <div className="bg-slate-50 rounded-lg shadow-lg">
-          <h2 className="md:text-2xl xs:text-lg font-bold text-center py-4">Sign Up</h2>
+          <h2 className="lg:text-2xl xs:text-sm font-bold text-center py-4">Sign Up</h2>
           <form onSubmit={handleSubmit(saveUser)} className="py-4 px-6 grid grid-cols-2 items-center gap-4">
             
-           <div className={`relative w-full  ${errors ? 'mb-6' : 'mb-0'}`}>
+           <div className={`relative md:col-span-1 xs:col-span-2  ${errors ? 'mb-6' : 'mb-0'}`}>
                   <input
                   {...register("firstName")}
                   type="text"
                   placeholder="First Name"
-                   className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500"
+                   className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-[8px] border-[1px] border-black focus:outline-slate-500"
                     />
                    <FaUser className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`} />
                    {errors.firstName && (
@@ -126,12 +124,12 @@ const RegisterForm = ({currentUser}) => {
                       )}
                 </div>
 
-           < div className={`relative w-full  ${errors ? 'mb-6' : 'mb-0'}`}>
+           < div className={`relative md:col-span-1 xs:col-span-2  ${errors ? 'mb-6' : 'mb-0'}`}>
             <input 
                {...register("lastName")}
               type="text"
               placeholder="Last Name"
-              className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500"
+              className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-[8px] border-[1px] border-black focus:outline-slate-500"
               
             />
              <FaUser className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`}/>
@@ -144,7 +142,7 @@ const RegisterForm = ({currentUser}) => {
                 {...register("email")}
               type="text"
               placeholder="E-mail"
-              className="rounded-lg w-full py-2 placeholder:text-xs px-10 outline-none border-[1px] border-black focus:outline-slate-500"
+              className="rounded-lg w-full py-2 placeholder:text-[8px] px-10 outline-none border-[1px] border-black focus:outline-slate-500"
              
             />
             <FaEnvelope className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`}/>
@@ -158,7 +156,7 @@ const RegisterForm = ({currentUser}) => {
                  {...register("password")}
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="rounded-lg py-2 px-2 w-full placeholder:text-xs outline-none border-[1px] border-black focus:outline-slate-500"
+                className="rounded-lg py-2 px-2 w-full placeholder:text-[8px] outline-none border-[1px] border-black focus:outline-slate-500"
             
               />
               <FaEyeSlash 
@@ -179,7 +177,7 @@ const RegisterForm = ({currentUser}) => {
                  {...register("confirmPassword")}
                 type={showPassword ? "text" : "password"}
                 placeholder="Confirm password"
-                className="rounded-lg py-2 px-2 placeholder:text-xs outline-none w-full border-[1px] border-black focus:outline-slate-500"
+                className="rounded-lg py-2 px-2 placeholder:text-[8px] outline-none w-full border-[1px] border-black focus:outline-slate-500"
               
               />
               <FaEyeSlash 
@@ -195,16 +193,16 @@ const RegisterForm = ({currentUser}) => {
               )}
             </div>
             <div className="col-span-2 flex items-center gap-2"> 
-             <input    {...register("accepted")} type="checkbox" className=" cursor-pointer" /><span className="text-xs"> I accept the terms and condition</span>
+             <input    {...register("accepted")} type="checkbox" className=" cursor-pointer" /><span className="text-[8px]"> I accept the terms and condition</span>
             </div>
             <div className="col-span-2 flex justify-center items-center">
-              <button disabled={loading} className="mt-5 w-60 bg-slate-800 text-white p-3 text-sm rounded-lg shadow-md">
+              <button disabled={loading} className="mt-5 w-60 bg-slate-800 text-white xs:p-2 sm:p-3 xs:text-xs sm:text-sm rounded-lg shadow-md">
                 {loading ? "Processing..." : "SignUp"}
               </button>
             </div>
             
           </form>
-          <p className="text-center py-4 text-xs">Already have an account? <Link className="text-blue-500 hover:underline underline-offset-4" href='/login'>Login</Link> here.</p>
+          <p className="text-center py-4 xs:text-[8px] sm:text-xs">Already have an account? <Link className="text-blue-500 hover:underline underline-offset-4" href='/login'>Login</Link> here.</p>
         </div>
       </div>
      

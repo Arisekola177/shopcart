@@ -29,11 +29,11 @@ const Navbar =  () => {
     <div className='w-full bg-[#131921] sticky top-0 z-50 backdrop-blur-2xl  transition-colors'>
       <div className='md:w-10/12 xs:w-full mx-auto xs:px-2 md:px-0 py-4 flex justify-between items-center gap-4'>
         <div className='flex items-center gap-1'>
-        <div onClick={handleNav} className='block md:hidden'>
+        <div onClick={handleNav} className='block md:hidden cursor-pointer'>
           {
             showMenu ? (null) : ( <FaBars className='text-white' />)
           }
-            <div className={`absolute z-[50] top-5 left-0 w-[80%] bg-white transition-all duration-500 ease-in-out px-3 py-4 ${showMenu ? 'left-0 ':'left-[-490px]'}`}>
+            <div className={`absolute z-[50] top-5 left-0 w-[80%] bg-white transition-all shadow-md duration-500 ease-in-out px-3 py-4 ${showMenu ? 'left-0 ':'left-[-490px]'}`}>
             
               <div className='flex justify-between'>
                  <div className='flex flex-col gap-4'>
@@ -43,17 +43,17 @@ const Navbar =  () => {
                      SHOP<span className="text-yellow-400">CART</span>
                     </h1>
                  </Link>
-                 <p className='text-xs'>Welcome to Your One-Stop Gadget Shop</p>
+                 <p className='text-[10px]'>Welcome to Your One-Stop Gadget Shop</p>
                  </div>
                  <div className='flex flex-col gap-4 px-4 py-2'>
-                 <Link className='text-xs' href='/'>Home</Link>
-                 <Link className='text-xs' href='/login'>Login</Link>
+                 <Link className='text-[10px]' href='/'>Home</Link>
+                 <Link className='text-[10px]' href='/login'>Login</Link>
                  <Link className='text-xs' href='/register'>Register</Link>
                  </div>
                  </div>
                  <div className='px-4 py-2'>
                   {
-                     showMenu ? (  <FaTimes className='text-black' />) : ( null)
+                     showMenu ? (  <FaTimes className='text-black cursor-pointer' />) : ( null)
                   }
                  </div>
               </div>

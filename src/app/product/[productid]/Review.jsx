@@ -8,7 +8,7 @@ import Image from "next/image";
 const Review = ({ product }) => {
 
   if (!product || !product.review || product.review.length === 0) {
-    return null;
+    return <p className="text-base font-semibold">No Reviews</p>;
   }
 
   return (

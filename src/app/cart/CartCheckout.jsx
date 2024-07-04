@@ -105,9 +105,9 @@ const CartCheckout = ({ currentUser }) => {
   return (
     <div className="mt-5 bg-gray-100 rounded-md">
     <form onSubmit={handleSubmit(createCheckout)} className="py-6  ">
-      <div className="grid grid-cols-1 items-center gap-6 ">
-    <div className=" px-4 col-span-1">
-      <h2 className="uppercase text-xs font-semibold p-2">Delivery information</h2>
+      <div className="grid grid-cols-1 items-center xs:gap-2 md:gap-6 ">
+    <div className=" md:px-4 xs:px-2 col-span-1">
+      <h2 className="uppercase text-xs font-semibold py-2">Delivery information</h2>
     
      <div className={`relative w-full ${errors ? 'mb-6' : 'mb-0'}`}>
      <input
@@ -115,7 +115,7 @@ const CartCheckout = ({ currentUser }) => {
       type="text"
       placeholder="City"
       className="rounded-lg py-2 px-10 w-full outline-none placeholder:text-xs border-[1px] border-black focus:outline-slate-500" />
-      <FaCity className={`absolute left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`} />
+      <FaCity className={`absolute  left-2 text-xs top-1/2 transform -translate-y-1/2 cursor-pointer`} />
        {errors.city && (
        <div className="absolute left-0 top-full mt-1 text-red-500 text-xs">
        {errors.city.message}
@@ -157,20 +157,20 @@ const CartCheckout = ({ currentUser }) => {
              </div>
       </div>
 
-     <div className="col-span-1  px-4">  
-      <h2 className="uppercase text-xs font-semibold py-4">Payment Information</h2>
+     <div className="col-span-1 px-2 md:px-4">  
+      <h2 className="uppercase text-xs font-semibold xs:py-2 md:py-4">Payment Information</h2>
       <p className="border-[1px] border-b"></p>
       <div className="flex justify-between items-center py-4 ">
-        <p className="uppercase text-blue-500 text-sm font-semibold">sub-total</p>
-        <p className="text-lg font-semibold">
+        <p className="uppercase text-blue-500 md:text-sm xs:text-[10px] font-semibold">sub-total</p>
+        <p className="md:text-lg xs:text-[10px] font-semibold">
           <FormattedPrice amount={totalAmount} />
         </p>
       </div>
      </div>
      </div>
-      <div className="w-full">
+      <div className="">
         {currentUser ? (
-          <div  className="flex items-center w-60 mx-auto"  >
+          <div  className="flex items-center xs:w-full md:w-60 mx-auto"  >
             <button
                disabled={loading}
               className="py-3 px-10 w-full rounded-md text-sm bg-yellow-800 text-white">
@@ -178,7 +178,7 @@ const CartCheckout = ({ currentUser }) => {
           </button>
           </div>
         ) : (
-          <div className="px-2 py-3 flex w-60 mx-auto flex-col gap-3">
+          <div className="px-2 py-3 flex xs:w-full md:w-60 mx-auto flex-col gap-3">
             <button onClick={() => {router.push('/login')}} className="py-3 w-full px-10 rounded-md text-sm bg-yellow-800 text-white">
                Login
             </button>

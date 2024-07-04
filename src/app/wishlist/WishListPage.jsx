@@ -17,7 +17,7 @@ const WishListPage = () => {
      }
   }
   return (
-    <div className="w-10/12 mx-auto py-10">
+    <div className="md:w-10/12 xs:w-full mx-auto p-5">
    
        {
         wishList.length > 0 ?
@@ -25,12 +25,12 @@ const WishListPage = () => {
            <>
             <div className="bg-white rounded-lg">
                <div className="flex items-center justify-between border-b-[1px] border-b-gray-400 pb-1">
-               <p className="text-xl font-semibold text-blue-800">
+               <p className="md:text-sm xs:text-xs font-semibold text-blue-800">
                 WishList
               </p>
-              <p className="text-xl font-semibold text-blue-800">Subtitle</p>
+              <p className="md:text-sm xs:text-xs font-semibold text-blue-800">Subtotal</p>
               </div>
-              <div className="mt-5 mb-5">
+              <div className="">
                  {
                   wishList.map((product) =>(
                     <div key={product.id} >
@@ -41,8 +41,7 @@ const WishListPage = () => {
               </div>
               <button
       onClick={handleReset}
-      className="py-2 px-3 text-white font-semibold bg-red-600 rounded-lg hover:bg-red-800 hover:text-white duration-300"
-    >
+      className="text-white xs:text-xs md:text-sm bg-red-500 rounded-md xs:py-1 md:py-2 md:px-3 xs:px-2 xs:mt-5 md:mt-10 hover:bg-red-900 duration-300" >
       reset wish
     </button>
             </div>
@@ -52,11 +51,11 @@ const WishListPage = () => {
          )  
          :
          (<div className="col-span-6 min-h-[70vh] text-gray-800 flex flex-col items-center justify-center">
-          <FaShoppingBasket className="text-8xl mb-2 text-red-900" />
-             <h1 className="mb-4 text-4xl font-montserrat font-semibold">Your Wishlist is Empty!!!</h1>
+          <FaShoppingBasket className="xl:text-8xl xs:text-3xl mb-2 text-red-900" />
+             <h1 className="mb-4 xl:text-4xl xs:text-sm font-semibold">Your Wishlist is Empty!!!</h1>
              <div className="flex items-center gap-2 hover:underline hover:underline-offset-4 hover:text-blue-500 duration-300">
               <FaArrowAltCircleLeft />
-              <p className=" cursor-pointer tracking-wide"><Link href={'/'}>Go Shopping</Link></p>
+              <p className="xs:text-xs cursor-pointer tracking-wide"><Link href={'/'}>Go Shopping</Link></p>
             </div>
          </div>)
        }
