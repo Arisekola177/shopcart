@@ -19,9 +19,6 @@ const Page = async ({ params }) => {
       return <Nulldata title="No Product found" />;
   }
 
-
-  const reviews = product.reviews || [];
-
   return (
     <div>
       <ProductDetails product={product} />

@@ -54,22 +54,22 @@ const Addreviews = ({ product, user }) => {
       });
   };
 
-  if (!user || !product) return null;
+  // if (!user || !product) return null;
 
-  const deliveredOrder = user.orders?.some(order =>
-    order.products.find(item => item.id === product.id) && order.deliveredStatus === 'delivered'
-  );
+  // const deliveredOrder = user.orders?.some(order =>
+  //   order.products.find(item => item.id === product.id) && order.deliveredStatus === 'delivered'
+  // );
 
-  const userReview = product.review?.find(review => review.userId === user.id);
+  // const userReview = product.review?.find(review => review.userId === user.id);
 
-  if (userReview || !deliveredOrder) {
-    return null;
-  }
+  // if (userReview || !deliveredOrder) {
+  //   return null;
+  // }
 
   return (
     <div className='flex flex-col gap-2 max-w-[500px]'>
       <h2 className='font-bold mb-4 text-xl'>Rate this product</h2>
-      <Rating onChange={(event, newValue) => {
+      <Rating onChange={( newValue) => {
         setCustomValue('rating', newValue);
       }} />
 
