@@ -7,9 +7,6 @@ import Image from "next/image";
 
 const Review = ({ product }) => {
 
-  if (!product || !product.review || product.review.length === 0) {
-    return <p className="text-base font-semibold">No Reviews</p>;
-  }
 
   return (
     <div className=" max-w-[400px]">
