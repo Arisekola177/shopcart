@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { MdMap, MdMapsHomeWork, MdPhone } from "react-icons/md";
 import { loadStripe } from "@stripe/stripe-js";
 import { resetCart } from "../redux/shopSlice";
+import Link from "next/link";
 
 
 const FormSchema = z.object({
@@ -182,7 +183,11 @@ const CartCheckout = ({ currentUser }) => {
             <button onClick={() => {router.push('/login')}} className="py-3 w-full px-10 rounded-md text-sm bg-yellow-800 text-white">
                Checkout
             </button>
-            {currentUser ? null : <p className="text-red-500 mt-4 text-sm animate-bounce">Login to continue</p>}
+            {currentUser ? null : <p className="text-red-500 text-center mt-4 text-sm animate-bounce">
+              <Link href='/'>
+                Click to Login
+              </Link>
+            </p>}
           </div>
         )}
       </div>
