@@ -46,8 +46,9 @@ const Addreviews = ({ product, user }) => {
         router.refresh();
         reset();
       })
-      .catch(() => {
+      .catch((error) => {
         toast.error('Something went wrong');
+        console.log(error)
       })
       .finally(() => {
         setIsLoading(false);
