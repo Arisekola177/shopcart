@@ -50,6 +50,7 @@ const CartCheckout = ({ currentUser }) => {
   }, [productData]);
 
     const createCheckout = async (formData) => {
+      toast('Processing, please wait...... ')
       setLoading(true);
       setError(false);
       if (currentUser) {
@@ -64,8 +65,6 @@ const CartCheckout = ({ currentUser }) => {
             }),
           });
 
-          dispatch(resetCart(productData))
-
           if (!response.ok) {
             console.error('Error creating checkout:', response.statusText);
             setLoading(false);
@@ -73,7 +72,7 @@ const CartCheckout = ({ currentUser }) => {
             return;
           }
           
-
+          dispatch(resetCart(productData))
           const data = await response.json();
           
           if (data.id) {
@@ -184,7 +183,7 @@ const CartCheckout = ({ currentUser }) => {
                Checkout
             </button>
             {currentUser ? null : <p className="text-red-500 text-center mt-4 text-sm animate-bounce">
-              <Link href='/'>
+              <Link href='/login'>
                 Click to Login
               </Link>
             </p>}
