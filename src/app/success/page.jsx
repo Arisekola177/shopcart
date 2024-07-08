@@ -7,10 +7,10 @@ const page = () => {
   const router = useRouter()
   return (
     <div className="flex flex-col gap-2 items-center justify-center py-20">
-      <h1 className="text-2xl font-semibold text-green-500">
+      <h1 className="xl:text-2xl xs:text-sm lg:text-xl font-semibold text-green-500">
         Your payment is successful !!!
       </h1>
-      <h1 className="text-2xl mt-8 font-semibold">
+      <h1 className="xl:text-2xl xs:text-sm lg:text-xl mt-8 font-semibold">
         Thank you for shopping from shopcart
       </h1>
       <Link
