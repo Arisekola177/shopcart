@@ -1,4 +1,3 @@
-
 'use client';
 import React, { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
@@ -19,7 +18,7 @@ const User = ({ currentUser }) => {
         onClick={toggleMenu}
         className="flex gap-1 items-center xs:p-1 sm:p-2 border-[1px] border-slate-100 rounded-full cursor-pointer hover:shadow-md duration-300 transition text-slate-100"
       >
-        <FaUserCircle  />
+        <FaUserCircle />
         <AiFillCaretDown />
       </div>
       {open && (
@@ -29,7 +28,11 @@ const User = ({ currentUser }) => {
               <div className="px-4 py-3">
                 <Link href="/orders">Your orders</Link>
               </div>
-             
+              {currentUser.role === 'ADMIN' && (
+                <div className="px-4 py-3">
+                  <Link href="/admin">Admin Dashboard</Link>
+                </div>
+              )}
               <hr />
               <div
                 onClick={() => {
@@ -51,12 +54,6 @@ const User = ({ currentUser }) => {
               </div>
             </div>
           )}
-          {
-           currentUser.role === 'ADMIN' && 
-           <div className="px-4 py-3">
-           <Link href="/admin">Admin Dashboard</Link>
-         </div>
-          }
         </div>
       )}
     </div>
