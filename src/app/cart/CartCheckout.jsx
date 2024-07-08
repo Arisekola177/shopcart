@@ -11,6 +11,7 @@ import { MdMap, MdMapsHomeWork, MdPhone } from "react-icons/md";
 import { loadStripe } from "@stripe/stripe-js";
 import { resetCart } from "../redux/shopSlice";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 
 const FormSchema = z.object({
@@ -179,14 +180,10 @@ const CartCheckout = ({ currentUser }) => {
           </div>
         ) : (
           <div className="px-2 py-3 flex xs:w-full md:w-60 mx-auto flex-col gap-3">
-            <button onClick={() => {router.push('/login')}} className="py-3 w-full px-10 rounded-md text-sm bg-yellow-800 text-white">
-               Checkout
+            <button onClick={() => {router.push('/login')}} className="py-3 w-full px-10 animate-bounce rounded-md text-sm bg-yellow-800 text-white">
+               Click to Login
             </button>
-            {currentUser ? null : <p className="text-red-500 text-center mt-4 text-sm animate-bounce">
-              <Link href='/login'>
-                Click to Login
-              </Link>
-            </p>}
+            
           </div>
         )}
       </div>

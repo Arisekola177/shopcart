@@ -28,7 +28,6 @@ const User = ({ currentUser }) => {
               <div className="px-4 py-3">
                 <Link href="/orders">Your orders</Link>
               </div>
-             
                 <div className="px-4 py-3">
                   <Link href="/admin">Admin Dashboard</Link>
                 </div>
