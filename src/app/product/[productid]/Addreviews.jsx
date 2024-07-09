@@ -57,11 +57,13 @@ const Addreviews = ({ product, user }) => {
 
   if (!user || !product) return null;
 
-  const deliveredOrder = user.orders?.some(order =>
+  const deliveredOrder = user?.orders.some(order => 
     order.products.find(item => item.id === product.id) && order.deliveredStatus === 'delivered'
-  );
+);
 
-  const userReview = product.review?.find(review => review.userId === user.id);
+const userReview =  product?.reviews.find(((review) => {
+    return review.userId === currentUser.id
+}));
 
   if (userReview || !deliveredOrder) {
     return null;

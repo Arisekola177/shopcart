@@ -13,29 +13,20 @@ export async function POST(req) {
 
     const body = await req.json();
 
-    const { comment, rating, productId } = body;
+    const { comment, rating, product } = body;
 
-    if (!comment || !rating || !productId) {
-        console.error("Missing required fields:", { comment, rating, productId });
-        return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
-
-    const deliveredOrder = currentUser.orders.some(order => 
-        order.products.some(item => item.id === productId) && order.deliveredStatus === 'delivered'
+    const deliveredOrder = currentUser?.orders.some(order => 
+        order.products.find(item => item.id === product.id) && order.deliveredStatus === 'delivered'
     );
 
-    const userReview = await prisma.review.findFirst({
-        where: {
-            userId: currentUser.id,
-            productId: productId,
-        }
-    });
-
-    console.log("User Review:", userReview); 
+    const userReview =  product?.reviews.find(((review) => {
+        return review.userId === currentUser.id
+    }));
+ 
 
     if (userReview || !deliveredOrder) {
         console.error("User has already reviewed or order not delivered");
-        return NextResponse.json({ error: 'User has already reviewed or order not delivered' }, { status: 400 });
+        return NextResponse.error();
     }
 
     try {
@@ -43,7 +34,7 @@ export async function POST(req) {
             data: {
                 comment,
                 rating,
-                productId,
+                productId: product.id,
                 userId: currentUser.id,
             },
         });
