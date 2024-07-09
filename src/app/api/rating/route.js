@@ -1,115 +1,91 @@
+'use client'
 
-// import { NextResponse } from 'next/server';
-// import prisma from '../../../libs/prisma';
-// import { getUser } from '../../../../actions/getUser';
+import { Rating } from '@mui/material';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
-// export async function POST(req) {
-//     const currentUser = await getUser();
+const Addreviews = ({ product, user }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-//     if (!currentUser) {
-//         console.error("User not authenticated");
-//         return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
-//     }
+  const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm({
+    defaultValues: {
+      Comment: '',
+      rating: 0,
+    },
+  });
 
-//     const body = await req.json();
+  const setCustomValue = (id, value) => {
+    setValue(id, value, {
+      shouldTouch: true,
+      shouldDirty: true,
+      shouldValidate: true,
+    });
+  };
 
-//     const { comment, rating, product } = body;
-
-//     const deliveredOrder = currentUser?.orders.some(order => 
-//         order.products.find(item => item.id === product.id) && order.deliveredStatus === 'delivered'
-//     );
-
-//     const userReview =  product?.reviews.find(((review) => {
-//         return review.userId === currentUser.id
-//     }));
- 
-
-//     if (userReview || !deliveredOrder) {
-//         console.error("User has already reviewed or order not delivered");
-//         return NextResponse.error();
-//     }
-
-//     try {
-//         const review = await prisma.review.create({
-//             data: {
-//                 comment,
-//                 rating,
-//                 productId: product.id,
-//                 userId: currentUser.id,
-//             },
-//         });
-
-//         return NextResponse.json(review);
-//     } catch (error) {
-//         console.error("Error creating review:", error);
-//         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-//     }
-// }
-
-
-import { NextResponse } from 'next/server';
-import prisma from '../../../libs/prisma';
-import { getUser } from '../../../../actions/getUser';
-
-export async function POST(req) {
-    const currentUser = await getUser();
-
-    if (!currentUser) {
-        console.error("User not authenticated");
-        return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
+  const onSubmit = async (data) => {
+    setIsLoading(true);
+    if (data.rating === 0) {
+      setIsLoading(false);
+      return toast.error('No rating selected');
     }
+    const ratingData = {
+      rating: data.rating,
+      productId: product.id,
+      userId: user.id,
+      comment: data.Comment,
+    };
+    axios.post('/api/rating', ratingData)
+      .then(() => {
+        toast.success('Rating Submitted');
+        router.refresh();
+        reset();
+      })
+      .catch((error) => {
+        toast.error('Something went wrong');
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-    const body = await req.json();
+  if (!user || !product) return null;
 
-    const { comment, rating, product } = body;
+  const deliveredOrder = user?.orders?.some(order =>
+    order.products.some(item => item.id === product.id) && order.deliveredStatus === 'delivered'
+  );
 
-    // Ensure `product.reviews` is part of the request or fetched correctly
-    let productReviews = product.reviews;
+  const userReview = product?.reviews?.find(review => review.userId === user.id);
 
-    if (!productReviews) {
-        const productData = await prisma.product.findUnique({
-            where: { id: product.id },
-            include: { reviews: true },
-        });
+  if (!deliveredOrder || userReview) {
+    return null;
+  }
 
-        if (!productData) {
-            console.error("Product not found");
-            return NextResponse.json({ error: 'Product not found' }, { status: 404 });
-        }
+  return (
+    <div className='flex flex-col gap-2 max-w-[500px]'>
+      <h2 className='font-bold mb-4 text-xl'>Rate this product</h2>
+      <Rating onChange={(event, newValue) => {
+        setCustomValue('rating', newValue);
+      }} />
 
-        productReviews = productData.reviews;
-    }
+      <textarea
+        {...register('Comment', { required: true })}
+        disabled={isLoading}
+        placeholder='Comment'
+        className='border-[1px] rounded-md border-black placeholder:xs px-5 py-4 outline-none'
+      />
+      {errors.Comment && <span className="text-red-500">This field is required</span>}
+      <div className='w-full py-3 flex items-center justify-center rounded-md hover:bg-slate-700 duration-300 bg-slate-900'>
+        <button className='w-full text-white' onClick={handleSubmit(onSubmit)} disabled={isLoading}>
+          {isLoading ? 'Sending .... ' : 'Rate Product'}
+        </button>
+      </div>
+    </div>
+  );
+};
 
-    const deliveredOrder = currentUser?.orders.some(order => 
-        order.products.some(item => item.id === product.id) && order.deliveredStatus === 'delivered'
-    );
-
-    const userReview = productReviews.find(review => review.userId === currentUser.id);
-
-    if (userReview) {
-        console.error("User has already reviewed this product");
-        return NextResponse.json({ error: 'User has already reviewed this product' }, { status: 400 });
-    }
-
-    if (!deliveredOrder) {
-        console.error("Product not delivered to user");
-        return NextResponse.json({ error: 'Product not delivered to user' }, { status: 400 });
-    }
-
-    try {
-        const review = await prisma.review.create({
-            data: {
-                comment,
-                rating,
-                productId: product.id,
-                userId: currentUser.id,
-            },
-        });
-
-        return NextResponse.json(review);
-    } catch (error) {
-        console.error("Error creating review:", error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
-    }
-}
-
+export default Addreviews;

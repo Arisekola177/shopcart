@@ -1,15 +1,15 @@
-
-
 import { FaUserCircle } from "react-icons/fa";
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { Rating } from "@mui/material";
 import Image from "next/image";
 
 const Review = ({ product }) => {
-
+  if (!product.review || product.review.length === 0) {
+    return <div>No reviews yet.</div>;
+  }
 
   return (
-    <div className=" max-w-[400px]">
+    <div className="max-w-[400px]">
       <h2 className="mb-5 font-bold xs:text-sm md:text-xl xl:text-3xl">Reviews</h2>
       {product.review.map((review) => (
         <div className='flex flex-col gap-3' key={review.id}>
@@ -20,13 +20,13 @@ const Review = ({ product }) => {
                   src={review.user.image}
                   width={30}
                   height={30}
-                  alt={`${review.user.firstName} ${review.user.lastName}`}
+                  alt={`${review.user.firstName} ${review.user.lastName}'s profile picture`}
                 />
               ) : (
-                <FaUserCircle />
+                <FaUserCircle size={30} />
               )}
             </div>
-            <h2 className="font-bold xs:sm xl:text-lg">
+            <h2 className="font-bold xs:text-sm xl:text-lg">
               {review.user ? `${review.user.firstName} ${review.user.lastName}` : "Anonymous"}
             </h2>
             <h2>{formatDistanceToNow(new Date(review.createdAt), { addSuffix: true })}</h2>
