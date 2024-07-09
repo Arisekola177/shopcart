@@ -3,8 +3,9 @@ import ProductDetails from "./ProductDetails";
 import Review from "./Review";
 import getProductById from '../../../../actions/getProductById'
 import Nulldata from "../../components/Nulldata";
-import Addreviews from "../Addreviews";
+
 import { getUser } from "../../../../actions/getUser";
+import Addreviews from "./Addreviews";
 
 
 const Page = async ({ params }) => {
