@@ -1,5 +1,3 @@
-
-
 'use client'
 
 import { Rating } from '@mui/material';
@@ -28,60 +26,31 @@ const Addreviews = ({ product, user }) => {
     });
   };
 
-  // const onSubmit = async (data) => {
-  //   setIsLoading(true);
-  //   if (data.rating === 0) {
-  //     setIsLoading(false);
-  //     return toast.error('No rating selected');
-  //   }
-  //   const ratingData = {
-  //     rating: data.rating,
-  //     productId: product.id,
-  //     userId: user.id,
-  //     comment: data.Comment,
-  //   };
-  //   axios.post('/api/rating', ratingData)
-  //     .then(() => {
-  //       toast.success('Rating Submitted');
-  //       console.log(ratingData)
-  //       router.refresh();
-  //       reset();
-  //     })
-  //     .catch((error) => {
-  //       toast.error('Something went wrong');
-  //       console.error('Error:', error);
-  //     })
-  //     .finally(() => {
-  //       setIsLoading(false);
-  //     });
-  // };
-
   const onSubmit = async (data) => {
     setIsLoading(true);
     if (data.rating === 0) {
-        setIsLoading(false);
-        return toast.error('No rating selected');
+      setIsLoading(false);
+      return toast.error('No rating selected');
     }
     const ratingData = {
-        rating: data.rating,
-        productId: product.id,
-        userId: user.id,
-        comment: data.Comment,
+      rating: data.rating,
+      productId: product.id,
+      userId: user.id,
+      comment: data.Comment,
     };
     console.log('Submitting data:', ratingData); // Add this line
     try {
-        await axios.post('/api/rating', ratingData);
-        toast.success('Rating Submitted');
-        router.refresh();
-        reset();
+      await axios.post('/api/rating', ratingData);
+      toast.success('Rating Submitted');
+      router.refresh();
+      reset();
     } catch (error) {
-        toast.error('Something went wrong');
-        console.error('Error:', error.response?.data || error.message);
+      toast.error('Something went wrong');
+      console.error('Error:', error.response?.data || error.message);
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
-};
-
+  };
 
   if (!user || !product) return null;
 

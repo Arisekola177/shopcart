@@ -1,42 +1,3 @@
-// import { NextResponse } from 'next/server';
-// import prisma from '../../../libs/prisma';
-// import { getUser } from '../../../../actions/getUser';
-
-// export async function POST(req) {
-
-//         const currentUser = await getUser();
-
-//         if (!currentUser) {
-//             return NextResponse.error();
-//         }
-
-//         const body = await req.json();
-//         const { comment, rating, product, userId } = body;
-
-
-//         const deliveredOrder = currentUser?.orders.some(order =>
-//             order.products.some(item => item.id === product.id) && order.deliveredStatus === 'delivered'
-//         );
-
-//         const userReview = product?.reviews.find(review => review.userId === currentUser.id);
-
-//         if(userReview || !deliveredOrder){
-//             return NextResponse.error()
-//         }
-
-//         const review = await prisma?.review.create({
-//             data: {
-//                 comment,
-//                 rating,
-//                 productId: product.id,
-//                 userId: currentUser.id,
-//             },
-//         });
-
-//         return NextResponse.json(review);
-//     } 
-     
-
 import { NextResponse } from 'next/server';
 import prisma from '../../../libs/prisma';
 import { getUser } from '../../../../actions/getUser';
@@ -53,10 +14,25 @@ export async function POST(req) {
         const body = await req.json();
         console.log('Received body:', body);
 
-        const { comment, rating, product, userId } = body;
+        const { comment, rating, productId } = body;
 
-        const deliveredOrder = currentUser?.orders.some(order =>
-            order.products.some(item => item.id === product.id) && order.deliveredStatus === 'delivered'
+        if (!productId || !comment || rating === undefined) {
+            console.error("Invalid request body");
+            return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+        }
+
+        const product = await prisma.product.findUnique({
+            where: { id: productId },
+            include: { reviews: true }
+        });
+
+        if (!product) {
+            console.error("Product not found");
+            return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+        }
+
+        const deliveredOrder = currentUser.orders.some(order =>
+            order.products.some(item => item.id === productId) && order.deliveredStatus === 'delivered'
         );
 
         if (!deliveredOrder) {
@@ -64,7 +40,7 @@ export async function POST(req) {
             return NextResponse.json({ error: 'Product not delivered to user' }, { status: 400 });
         }
 
-        const userReview = product?.reviews.find(review => review.userId === currentUser.id);
+        const userReview = product.reviews.find(review => review.userId === currentUser.id);
 
         if (userReview) {
             console.error("User has already reviewed this product");
@@ -88,4 +64,3 @@ export async function POST(req) {
         return NextResponse.json({ error: 'Internal Server Error', details: error.message }, { status: 500 });
     }
 }
-
