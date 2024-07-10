@@ -28,33 +28,60 @@ const Addreviews = ({ product, user }) => {
     });
   };
 
+  // const onSubmit = async (data) => {
+  //   setIsLoading(true);
+  //   if (data.rating === 0) {
+  //     setIsLoading(false);
+  //     return toast.error('No rating selected');
+  //   }
+  //   const ratingData = {
+  //     rating: data.rating,
+  //     productId: product.id,
+  //     userId: user.id,
+  //     comment: data.Comment,
+  //   };
+  //   axios.post('/api/rating', ratingData)
+  //     .then(() => {
+  //       toast.success('Rating Submitted');
+  //       console.log(ratingData)
+  //       router.refresh();
+  //       reset();
+  //     })
+  //     .catch((error) => {
+  //       toast.error('Something went wrong');
+  //       console.error('Error:', error);
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false);
+  //     });
+  // };
+
   const onSubmit = async (data) => {
     setIsLoading(true);
     if (data.rating === 0) {
-      setIsLoading(false);
-      return toast.error('No rating selected');
+        setIsLoading(false);
+        return toast.error('No rating selected');
     }
     const ratingData = {
-      rating: data.rating,
-      productId: product.id,
-      userId: user.id,
-      comment: data.Comment,
+        rating: data.rating,
+        productId: product.id,
+        userId: user.id,
+        comment: data.Comment,
     };
-    axios.post('/api/rating', ratingData)
-      .then(() => {
+    console.log('Submitting data:', ratingData); // Add this line
+    try {
+        await axios.post('/api/rating', ratingData);
         toast.success('Rating Submitted');
-        console.log(ratingData)
         router.refresh();
         reset();
-      })
-      .catch((error) => {
+    } catch (error) {
         toast.error('Something went wrong');
-        console.error('Error:', error);
-      })
-      .finally(() => {
+        console.error('Error:', error.response?.data || error.message);
+    } finally {
         setIsLoading(false);
-      });
-  };
+    }
+};
+
 
   if (!user || !product) return null;
 
