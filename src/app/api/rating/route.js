@@ -14,11 +14,11 @@ export async function POST(req){
 
     const body = await req.json()
 
-    const {comment, rating, product, userId} = body;
+    const {comment, rating, product} = body;
 
 
     const deliveredOrder = currentUser?.orders.some(order => 
-     order.products.find(item => item.id === product.id ) && order.deliverStatus === 'delivered')
+     order.products.some(item => item.id === product.id ) && order.deliverStatus === 'delivered')
 
     const userReview = product?.reviews.find((review) => {
         return review.userId === currentUser.id
