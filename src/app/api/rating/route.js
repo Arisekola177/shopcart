@@ -23,7 +23,7 @@ export async function POST(req) {
 
         const product = await prisma.product.findUnique({
             where: { id: productId },
-            include: { reviews: true }
+            include: { reviews: true } // Ensure 'reviews' is the correct relation
         });
 
         if (!product) {
