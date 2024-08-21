@@ -14,7 +14,8 @@ module.exports = {
         md: "768px",
         lg: "960px",
         lgl: "1024px",
-        xl: "1280px",
+        xl:  "1280px",
+       
       },
       boxShadow: {
         testShadow: "0px 0px 54px -13px rgba(0,0,0,0.7)",
@@ -23,3 +24,4 @@ module.exports = {
   },
   plugins: [require("tailwind-scrollbar")],
 };
+

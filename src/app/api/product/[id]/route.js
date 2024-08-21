@@ -13,7 +13,7 @@ export async function DELETE(req, { params }) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    const productId = params.id; // Ensure this matches your dynamic route parameter
+    const productId = params.id; 
 
     const product = await prisma.product.delete({
       where: { id: productId },
@@ -23,7 +23,7 @@ export async function DELETE(req, { params }) {
   } catch (error) {
     console.error('Error deleting product:', error);
 
-    // Check if the error is caused by the product not being found
+  
     if (error.code === 'P2025') {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }

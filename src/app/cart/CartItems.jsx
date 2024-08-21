@@ -46,15 +46,14 @@ const CartItems = ({ currentUser, productData }) => {
                       height={300}
                       className="w-full h-auto object-contain aspect-square px-4 rounded-lg"
                     />
-                   <p className="md:text-xs xs:text-[8px]  font-semibold">Color:{selectedImage.color}</p>
+                   
                   </div>
                 </div>
                   <div className="col-span-3 flex items-center rounded-md gap-4">
                     <div className="flex flex-col gap-1">
                       <p className="md:block xs:hidden text-sm font-semibold text-blue-800">{product.name}</p>
                       <p className="xs:block md:hidden md:text-sm xs:text-[10px] font-semibold text-blue-800">{product.name.substring(0, 60)}....</p>
-                      <p className="md:block xs:hidden text-sm text-gray-600">{product.description.substring(0, 100)}....</p>
-                      <p className="xs:block md:hidden md:text-sm xs:text-[10px] text-gray-600">{product.description.substring(0, 40)}....</p>
+                      <p className="md:text-xs xs:text-[8px]  font-semibold">Color:{selectedImage.color}</p>
                       <div className="flex md:flex-row xs:flex-col items-start md:items-center gap-2">
                         <p className="md:text-sm xs:text-[10px] text-gray-600">
                           Unit Price{" "}
